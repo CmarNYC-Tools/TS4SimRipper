@@ -1330,10 +1330,11 @@ namespace TS4SimRipper
             {
                 Vector3 basePosition = morphedSlotBasePosition[slot];
                 Vector3 offsetForBasePosition = morphedSlotBasePositionOffsets[slot];
-
-                Vector3 pos = (slot.ParentBone.GlobalTransform.Inverse() * slot.LocalRotation.toMatrix4D(basePosition + offsetForBasePosition)).Offset;
-                slot.PositionVector = pos;
-                slot.CalculateTransforms();
+                if(slot.ParentBone !=null){
+                    Vector3 pos = (slot.ParentBone.GlobalTransform.Inverse() * slot.LocalRotation.toMatrix4D(basePosition + offsetForBasePosition)).Offset;
+                    slot.PositionVector = pos;
+                    slot.CalculateTransforms();
+                }
             }
         }
 

@@ -9,7 +9,6 @@
     <RootNamespace>TS4SimRipper</RootNamespace>
     <AssemblyName>TS4SimRipper</AssemblyName>
     <UseWindowsForms>true</UseWindowsForms>
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
     <SelfContained>false</SelfContained>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -56,6 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="protobuf-net" Version="3.2.30"/>
-    <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" /> 
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1"/>
   </ItemGroup>
 </Project>

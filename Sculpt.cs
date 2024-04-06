@@ -196,6 +196,8 @@ namespace TS4SimRipper
             }
         }
 
+        public uint Version { get => version; set => version = value; }
+
         public class ObjectData
         {
             internal uint position;

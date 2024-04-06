@@ -14,12 +14,12 @@ using ProtoBuf;
 using s4pi.Package;
 using s4pi.Interfaces;
 using s4pi.ImageResource;
-using TS4SaveGame= EA.Sims4.Persistence;
+using TS4SaveGame = EA.Sims4.Persistence;
 namespace TS4SimRipper
 {
     public partial class Form1 : Form
     {
-        string version = "TS4 SimRipper Classic v3.14.2.2";
+        string version = "TS4 SimRipper Classic v3.14.2.3";
         ulong[] frameIDMtF4male = new ulong[] { 0x27FE2BD7D11FDE65UL, 0x7A9D44AB67D00802UL };
         ulong[] frameIDMtF4female = new ulong[] { 0xA1A3F64ED26BCED8UL, 0x8ABEBBC4544AAE5BUL };
         ulong[] frameIDFtM = new ulong[] { 0x73290F92433C9DCCUL, 0xBD2A4BDE5C973977UL };
@@ -104,11 +104,11 @@ namespace TS4SimRipper
                     //ulong shapeID = FNVhash.FNV64("ymBody_Female_Shape");
                     //DMap shape = FetchGameDMap(new TGI((uint)ResourceTypes.DeformerMap, 0, shapeID), ref startupErrors);
                     //if (shape == null)
-                        DMap shape = new DMap(new BinaryReader(new MemoryStream(Properties.Resources.ymBody_Female_Shape)));
+                    DMap shape = new DMap(new BinaryReader(new MemoryStream(Properties.Resources.ymBody_Female_Shape)));
                     //ulong normalID = FNVhash.FNV64("ymBody_Female_Normals");
                     //DMap normals = FetchGameDMap(new TGI((uint)ResourceTypes.DeformerMap, 0, normalID), ref startupErrors);
                     //if (normals == null)
-                        DMap normals = new DMap(new BinaryReader(new MemoryStream(Properties.Resources.ymBody_Female_Normals)));
+                    DMap normals = new DMap(new BinaryReader(new MemoryStream(Properties.Resources.ymBody_Female_Normals)));
                     if (shape != null && normals != null) frameBoobs = new MorphMap[] { shape.ToMorphMap(), normals.ToMorphMap() };
                     GameModifierMorphs = SetupMorphsToSMOD(ref startupErrors);
                 }
@@ -264,9 +264,9 @@ namespace TS4SimRipper
             List<SimListing> simsList = new List<SimListing>();
             for (int i = 0; i < simsArray.Length; i++)
             {
-                if (((simsArray[i].sim.extended_species <= 1 && SimFilter_checkedListBox.GetItemChecked(0) || 
+                if (((simsArray[i].sim.extended_species <= 1 && SimFilter_checkedListBox.GetItemChecked(0) ||
                      (simsArray[i].sim.extended_species > 1 && SimFilter_checkedListBox.GetItemChecked(1)) ||
-                      simsArray[i].isMannequin && SimFilter_checkedListBox.GetItemChecked(2))) & 
+                      simsArray[i].isMannequin && SimFilter_checkedListBox.GetItemChecked(2))) &
                     ((simsArray[i].sim.gender == (uint)AgeGender.Male && SimFilter_checkedListBox.GetItemChecked(3)) ||
                      (simsArray[i].sim.gender == (uint)AgeGender.Female && SimFilter_checkedListBox.GetItemChecked(4))) &
                     ((simsArray[i].sim.age == (uint)AgeGender.Infant && SimFilter_checkedListBox.GetItemChecked(5)) ||
@@ -353,14 +353,14 @@ namespace TS4SimRipper
             canHaveBreasts = true;
             isPregnant = false;
             if (sim.attributes != null && sim.attributes.trait_tracker != null && sim.attributes.trait_tracker.trait_ids != null)
-            foreach (ulong t in sim.attributes.trait_tracker.trait_ids)
-            {
-                TS4Traits trait = (TS4Traits)t;
-                if (trait == TS4Traits.trait_GenderOptions_Frame_Feminine) frameFeminine = true;
-                if (trait == TS4Traits.trait_GenderOptions_Frame_Masculine) frameMasculine = true;
-                if (trait == TS4Traits.trait_isPregnant || trait == TS4Traits.trait_isPregnant_Alien_Abduction) isPregnant = true;
-                if (trait == TS4Traits.trait_Breasts_ForceOff) canHaveBreasts = false;
-            }
+                foreach (ulong t in sim.attributes.trait_tracker.trait_ids)
+                {
+                    TS4Traits trait = (TS4Traits)t;
+                    if (trait == TS4Traits.trait_GenderOptions_Frame_Feminine) frameFeminine = true;
+                    if (trait == TS4Traits.trait_GenderOptions_Frame_Masculine) frameMasculine = true;
+                    if (trait == TS4Traits.trait_isPregnant || trait == TS4Traits.trait_isPregnant_Alien_Abduction) isPregnant = true;
+                    if (trait == TS4Traits.trait_Breasts_ForceOff) canHaveBreasts = false;
+                }
             if (currentOccult == SimOccult.Werewolf) canHaveBreasts = false;
 
             currentFrame = currentGender;
@@ -497,7 +497,7 @@ namespace TS4SimRipper
             //  Package testpack = (Package)Package.NewPackage(1);
 
             ulong[] sculpts = new ulong[0];
-            List<TS4SaveGame.BlobSimFacialCustomizationData.Modifier>faceModifiers = new List<TS4SaveGame.BlobSimFacialCustomizationData.Modifier> ();
+            List<TS4SaveGame.BlobSimFacialCustomizationData.Modifier> faceModifiers = new List<TS4SaveGame.BlobSimFacialCustomizationData.Modifier>();
             List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier> bodyModifiers = new List<TS4SaveGame.BlobSimFacialCustomizationData.Modifier>();
             string[] physique = null;
             List<TS4SaveGame.OutfitData> outfits = new List<TS4SaveGame.OutfitData>();
@@ -606,7 +606,7 @@ namespace TS4SimRipper
             Outfits_comboBox.SelectedIndex = outfitIndex;
             Outfits_comboBox.SelectedIndexChanged += Outfits_comboBox_SelectedIndexChanged;
 
-          //  if (debug) errorList += "DisplaySim loaded outfits" + Environment.NewLine;
+            //  if (debug) errorList += "DisplaySim loaded outfits" + Environment.NewLine;
 
             if (currentSpecies == Species.Human && currentAge == AgeGender.Elder)
             {
@@ -623,7 +623,7 @@ namespace TS4SimRipper
                 }
             }
 
-          //  if (debug) errorList += "DisplaySim loaded elder morph" + Environment.NewLine;
+            //  if (debug) errorList += "DisplaySim loaded elder morph" + Environment.NewLine;
 
             if (currentSpecies == Species.Human && currentOccult == SimOccult.Werewolf)
             {
@@ -640,7 +640,7 @@ namespace TS4SimRipper
                     shapeList.Add(shape.ToMorphMap());
                     normalList.Add(normals.ToMorphMap());
                 }
-              //  if (debug) errorList += "DisplaySim loaded werewolf morph" + Environment.NewLine;
+                //  if (debug) errorList += "DisplaySim loaded werewolf morph" + Environment.NewLine;
             }
 
             float[] physiqueWeights = new float[physique.Length];
@@ -725,7 +725,7 @@ namespace TS4SimRipper
                 }
             }
 
-          //  if (debug) errorList += "DisplaySim loaded physique weights" + Environment.NewLine;
+            //  if (debug) errorList += "DisplaySim loaded physique weights" + Environment.NewLine;
 
             Bitmap sculptOverlay = new Bitmap(currentSize.Width, currentSize.Height);
             string morphInfo = "";
@@ -735,7 +735,7 @@ namespace TS4SimRipper
             //List<string> dampenModifiers = CASTuning.SculptDampening(currentSpecies, occultState, currentAge, currentGender, out sculptWeights); //SMODs to dampen
 
             Sculpt[] simSculpts = new Sculpt[Enum.GetValues(typeof(SimRegion)).Cast<int>().Max()];
-           // bool[] sculptAreas = new bool[Enum.GetValues(typeof(SimRegion)).Cast<int>().Max()];
+            // bool[] sculptAreas = new bool[Enum.GetValues(typeof(SimRegion)).Cast<int>().Max()];
             foreach (ulong id in sculpts)
             {
                 TGI tgi = new TGI((uint)ResourceTypes.Sculpt, 0, id);
@@ -798,35 +798,49 @@ namespace TS4SimRipper
                         normalList.Add(normal.ToMorphMap());
                     }
                 }
-                if (sculpt.boneDeltaRef.Instance > 0)
+                if (sculpt.boneDeltaRef != null)
                 {
-                    BOND bond = FetchGameBOND(sculpt.boneDeltaRef, ref errorList);
-                    if (bond != null)
+                    if (sculpt.boneDeltaRef.Instance > 0)
                     {
-                        bondList.Add(bond);
+                        BOND bond = FetchGameBOND(sculpt.boneDeltaRef, ref errorList);
+                        if (bond != null)
+                        {
+                            bondList.Add(bond);
+                        }
                     }
                 }
-                if (sculpt.textureRef.Instance > 0u)
+                else
                 {
-                    Bitmap texture = FetchGameTexture(sculpt.textureRef, -1, ref errorList, false);
-                    //texture.Save("F:\\Sims4Workspace\\scultTexture" + count.ToString() + ".png");
-                    //count++;
-                    if (texture != null)
+                    LogMe(log, $"{sim.first_name} {sim.last_name} using old sculpt {sculpt.publicKey[0]} version {sculpt.Version:X8}. Skipping boneDeltaRef");
+                }
+                if (sculpt.textureRef != null)
+                {
+                    if (sculpt.textureRef.Instance > 0u)
                     {
-                        int order = 0;
-                        switch (sculpt.region)
+                        Bitmap texture = FetchGameTexture(sculpt.textureRef, -1, ref errorList, false);
+                        //texture.Save("F:\\Sims4Workspace\\scultTexture" + count.ToString() + ".png");
+                        //count++;
+                        if (texture != null)
                         {
-                            case SimRegion.CHEEKS: order = 1; break;
-                            case SimRegion.FOREHEAD: order = 2; break;
-                            case SimRegion.JAW: order = 3; break;
-                            case SimRegion.CHIN: order = 4; break;
-                            case SimRegion.MOUTH: order = 5; break;
-                            case SimRegion.NOSE: order = 6; break;
-                            case SimRegion.EYES: order = 7; break;
-                            default: order = 8; break;
+                            int order = 0;
+                            switch (sculpt.region)
+                            {
+                                case SimRegion.CHEEKS: order = 1; break;
+                                case SimRegion.FOREHEAD: order = 2; break;
+                                case SimRegion.JAW: order = 3; break;
+                                case SimRegion.CHIN: order = 4; break;
+                                case SimRegion.MOUTH: order = 5; break;
+                                case SimRegion.NOSE: order = 6; break;
+                                case SimRegion.EYES: order = 7; break;
+                                default: order = 8; break;
+                            }
+                            sculptTextures.Add(new SculptOrder(texture, order));
                         }
-                        sculptTextures.Add(new SculptOrder(texture, order));
                     }
+                }
+                else
+                {
+                    LogMe(log, $"{sim.first_name} {sim.last_name} using old sculpt {sculpt.publicKey[0]} version {sculpt.Version:X8}. Skipping textureRef");
                 }
             }
             sculptTextures.Sort((a, b) => a.order.CompareTo(b.order));
@@ -840,7 +854,7 @@ namespace TS4SimRipper
             }
             currentSculptOverlay = sculptOverlay;
 
-          //  if (debug) errorList += "DisplaySim loaded sculpts" + Environment.NewLine;
+            //  if (debug) errorList += "DisplaySim loaded sculpts" + Environment.NewLine;
 
             Dictionary<ulong, string> modifierNames = CASTuning.CASModifierNames(currentSpecies, occultState, currentAge, currentGender);
             Dictionary<ulong, float> modifierScaling = CASTuning.CASModifierScales(currentSpecies, occultState, currentAge, currentGender);
@@ -908,7 +922,7 @@ namespace TS4SimRipper
                 }
             }
 
-          //  if (debug) errorList += "DisplaySim loaded face modifiers" + Environment.NewLine;
+            //  if (debug) errorList += "DisplaySim loaded face modifiers" + Environment.NewLine;
 
             foreach (EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier m in bodyModifiers)
             {
@@ -931,7 +945,7 @@ namespace TS4SimRipper
                 }
                 float modDampen = 1f;
                 float modOffset = 0f;
-                morphInfo += "Sim Modifier: " + tgi.ToString() + " (" + modName + "), Weight: " + m.amount.ToString() + ", Scaling: " + modAdjust.ToString() + 
+                morphInfo += "Sim Modifier: " + tgi.ToString() + " (" + modName + "), Weight: " + m.amount.ToString() + ", Scaling: " + modAdjust.ToString() +
                     ", Offset: " + modOffset.ToString() + ", Dampen: " + modDampen.ToString() + Environment.NewLine;
                 //  TestPackageBuilder(smod, new TGI((uint)ResourceTypes.SimModifier, 0, m.key), testpack);
 
@@ -975,7 +989,7 @@ namespace TS4SimRipper
                 }
             }
 
-          //  if (debug) errorList += "DisplaySim loaded body modifiers" + Environment.NewLine;
+            //  if (debug) errorList += "DisplaySim loaded body modifiers" + Environment.NewLine;
 
             morphPreview1.Stop_Mesh();
             morphBGEO = bgeoList;
@@ -1062,7 +1076,7 @@ namespace TS4SimRipper
                 SkinState_comboBox.Enabled = false;
             }
 
-         //   if (debug) errorList += "DisplaySim loaded skin/pelt" + Environment.NewLine;
+            //   if (debug) errorList += "DisplaySim loaded skin/pelt" + Environment.NewLine;
 
             currentPhysique = physiqueWeights;
 
@@ -1071,10 +1085,10 @@ namespace TS4SimRipper
                 "World: " + (worldNames.TryGetValue(sim.zone_id, out worldName) ? worldName : "None") +
                 Environment.NewLine + "Occult: " + currentOccult.ToString() + Environment.NewLine + "Age: " + ((AgeGender)sim.age).ToString() + Environment.NewLine +
                 "Gender: " + ((AgeGender)sim.gender).ToString() + " / Frame: " + currentFrame.ToString() + Environment.NewLine +
-                "Pregnant: " + isPregnant.ToString() + Environment.NewLine + "Rig: " + rigInstance.ToString("X16") + 
+                "Pregnant: " + isPregnant.ToString() + Environment.NewLine + "Rig: " + rigInstance.ToString("X16") +
                 " (" + (rigPackage.Length > 0 ? Path.GetFileName(rigPackage) : "Not Found") + ")" + Environment.NewLine +
                 "Skintone: " + sim.skin_tone.ToString("X16") +
-                ", Overlay " + (currentTONE != null ? "Hue: " + currentTONE.Hue.ToString() + " Saturation: " + currentTONE.Saturation.ToString() : "-") + 
+                ", Overlay " + (currentTONE != null ? "Hue: " + currentTONE.Hue.ToString() + " Saturation: " + currentTONE.Saturation.ToString() : "-") +
                 ", Shift: " + skincolorShift.ToString() + " (" + (tonePackage.Length > 0 ? Path.GetFileName(tonePackage) : "Not Found") + ")" + Environment.NewLine;
             for (int i = 0; i < 5; i++)
             {
@@ -1085,7 +1099,7 @@ namespace TS4SimRipper
             }
             simDesc = info + Environment.NewLine + morphInfo + Environment.NewLine;
 
-          //  if (debug) errorList += "DisplaySim loaded info listing" + Environment.NewLine;
+            //  if (debug) errorList += "DisplaySim loaded info listing" + Environment.NewLine;
 
             GetCurrentModel();
             Working_label.Visible = false;
@@ -1101,7 +1115,7 @@ namespace TS4SimRipper
             //if (saveFileDialog1.ShowDialog() == DialogResult.OK) testpack.SaveAs(saveFileDialog1.FileName);
 
             morphPreview1.Stop_Mesh();
-            morphPreview1.Start_Mesh(CurrentModel, GlassModel, currentTexture, currentClothingSpecular, 
+            morphPreview1.Start_Mesh(CurrentModel, GlassModel, currentTexture, currentClothingSpecular,
                 currentGlassTexture, currentGlassSpecular, true, SeparateMeshes_comboBox.SelectedIndex == 2);
         }
 
@@ -1293,7 +1307,7 @@ namespace TS4SimRipper
             if (defaultFilename != null && String.CompareOrdinal(defaultFilename, " ") > 0) saveFileDialog1.FileName = defaultFilename;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                float boneDivider = ((10f - (float)BoneSize_numericUpDown.Value) / 4f) * 100f; 
+                float boneDivider = ((10f - (float)BoneSize_numericUpDown.Value) / 4f) * 100f;
                 dae.Write(saveFileDialog1.FileName, flipYZ, boneDivider, LinkTexture_checkBox.Checked, SeparateMeshes_comboBox.SelectedIndex == 2);
                 return saveFileDialog1.FileName;
             }
@@ -1532,7 +1546,7 @@ namespace TS4SimRipper
                 CurrentModel[i] = LoadDMapMorph(log, BaseModel[i], pregnantModifier[0], pregnantModifier[1]);
             }
             morphPreview1.Stop_Mesh();
-            morphPreview1.Start_Mesh(CurrentModel, GlassModel, currentTexture, currentClothingSpecular, 
+            morphPreview1.Start_Mesh(CurrentModel, GlassModel, currentTexture, currentClothingSpecular,
                 currentGlassTexture, currentGlassSpecular, true, SeparateMeshes_comboBox.SelectedIndex == 2);
         }
 
@@ -1544,7 +1558,7 @@ namespace TS4SimRipper
             Working_label.Refresh();
             morphPreview1.Stop_Mesh();
             GetCurrentModel(true);
-            morphPreview1.Start_Mesh(CurrentModel, GlassModel, currentTexture, currentClothingSpecular, 
+            morphPreview1.Start_Mesh(CurrentModel, GlassModel, currentTexture, currentClothingSpecular,
                 currentGlassTexture, currentGlassSpecular, false, SeparateMeshes_comboBox.SelectedIndex == 2);
             Working_label.Visible = false;
         }
@@ -1556,7 +1570,7 @@ namespace TS4SimRipper
             Working_label.Refresh();
             morphPreview1.Stop_Mesh();
             GetCurrentModel(true);
-            morphPreview1.Start_Mesh(CurrentModel, GlassModel, currentTexture, currentClothingSpecular, 
+            morphPreview1.Start_Mesh(CurrentModel, GlassModel, currentTexture, currentClothingSpecular,
                 currentGlassTexture, currentGlassSpecular, false, SeparateMeshes_comboBox.SelectedIndex == 2);
             Working_label.Visible = false;
         }
@@ -1599,7 +1613,7 @@ namespace TS4SimRipper
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-           // MessageBox.Show("Startup Errors");
+            // MessageBox.Show("Startup Errors");
             if (startupErrors != null && startupErrors.Length > 0) MessageBox.Show(startupErrors);
         }
 
@@ -1610,7 +1624,7 @@ namespace TS4SimRipper
             Working_label.Refresh();
             morphPreview1.Stop_Mesh();
             GetCurrentModel(false);
-            morphPreview1.Start_Mesh(CurrentModel, GlassModel, currentTexture, currentClothingSpecular, 
+            morphPreview1.Start_Mesh(CurrentModel, GlassModel, currentTexture, currentClothingSpecular,
                 currentGlassTexture, currentGlassSpecular, false, SeparateMeshes_comboBox.SelectedIndex == 2);
             Working_label.Visible = false;
         }
