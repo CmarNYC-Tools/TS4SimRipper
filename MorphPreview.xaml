@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="TS4SimRipper.MorphPreview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="493" d:DesignWidth="458" FlowDirection="LeftToRight">
+    <Grid Width="453" Height="488">
+        <Grid.RowDefinitions>
+            
+        </Grid.RowDefinitions>
+        <Canvas Height="485" HorizontalAlignment="Left" Name="canvas1" VerticalAlignment="Top" Width="451" FlowDirection="LeftToRight">
+            <Slider Canvas.Left="414" Canvas.Top="91" Height="294" Name="sliderZoom" Width="23" Orientation="Vertical" Minimum="-6" ValueChanged="sliderZoom_ValueChanged" Value="-3" Maximum="-0.01" FlowDirection="RightToLeft" UseLayoutRounding="False" />
+            <Slider Canvas.Left="32" Canvas.Top="91" Height="294" Name="sliderXRot" Width="23" Orientation="Vertical" Minimum="-180" ValueChanged="sliderXRot_ValueChanged" Maximum="180" FlowDirection="RightToLeft" />
+            <Label Canvas.Left="23" Canvas.Top="451" Content="Rotate:" Height="28" Name="label1" FlowDirection="LeftToRight" Background="#B5FFFFFF" />
+            <Slider Canvas.Left="94" Canvas.Top="434" Height="23" Maximum="2.5" Minimum="-2.5" Name="sliderXMove" Width="328" ValueChanged="sliderXMove_ValueChanged" />
+            <Label Canvas.Left="28" Canvas.Top="429" Content="Move:" Height="28" Name="label2" FlowDirection="LeftToRight" Background="#B5FFFFFF" />
+            <Slider Canvas.Left="10" Canvas.Top="91" FlowDirection="RightToLeft" Height="294" Maximum="3" Minimum="-3" Name="sliderYMove" Orientation="Vertical" Width="23" ValueChanged="sliderYMove_ValueChanged" />
+            <Label Canvas.Left="32" Canvas.Top="51" Content="Rotate:" Height="28" Name="label4" FlowDirection="LeftToRight" Background="#B5FFFFFF">
+                <Label.LayoutTransform>
+                    <RotateTransform Angle="90"/>
+                </Label.LayoutTransform>
+            </Label>
+            <Label Canvas.Left="416" Canvas.Top="51" Content="Zoom:" Height="28" Name="label5" FlowDirection="LeftToRight" Background="#B5FFFFFF">
+                <Label.LayoutTransform>
+                    <RotateTransform Angle="90"/>
+                </Label.LayoutTransform>
+            </Label>
+            <Label Canvas.Left="12" Canvas.Top="51" Content="Move:" Height="28" Name="label3" FlowDirection="LeftToRight" Background="#B5FFFFFF">
+                <Label.LayoutTransform>
+                    <RotateTransform Angle="90"/>
+                </Label.LayoutTransform>
+            </Label>
+            <Slider Height="23" Name="sliderYRot" Width="328" Minimum="-180" ValueChanged="sliderYRot_ValueChanged" Maximum="180" Canvas.Left="94" Canvas.Top="456" />
+        </Canvas>
+    </Grid>
+</UserControl>
