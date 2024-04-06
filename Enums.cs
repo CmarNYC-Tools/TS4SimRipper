@@ -27,7 +27,10 @@ namespace TS4SimRipper
         Human = 1,
         Dog = 2,
         Cat = 3,
-        LittleDog = 4
+        LittleDog = 4,
+        Fox = 5,
+        Horse = 6
+
     }
 
     [Flags]

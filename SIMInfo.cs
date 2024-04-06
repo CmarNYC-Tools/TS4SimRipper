@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Globalization;
 using ProtoBuf;
-
+using TS4SaveGame=EA.Sims4.Persistence;
 namespace TS4SimRipper
 {
     public class SimInfo
@@ -210,10 +210,10 @@ namespace TS4SimRipper
             this.unknown1 = 1;
             if (sim.pronouns != null & sim.pronouns.pronouns != null)
             {
-                this.pronouns = new Pronoun[sim.pronouns.pronouns.Length];
-                for (int i = 0; i < sim.pronouns.pronouns.Length; i++)
+                this.pronouns = new Pronoun[sim.pronouns.pronouns.Count];
+                for (int i = 0; i < sim.pronouns.pronouns.Count; i++)
                 {
-                    this.pronouns[i] = new Pronoun((GrammaticalCase)((uint)sim.pronouns.pronouns[i].thecase), sim.pronouns.pronouns[i].pronoun);
+                    this.pronouns[i] = new Pronoun((GrammaticalCase)((uint)sim.pronouns.pronouns[i].@case), sim.pronouns.pronouns[i].pronoun);
                 }
             }
             else
@@ -225,7 +225,7 @@ namespace TS4SimRipper
             if (sim.pelt_layers != null && sim.pelt_layers.layers != null)
             {
                 List<PeltLayerData> pelts = new List<PeltLayerData>();
-                for (int i = 0; i < sim.pelt_layers.layers.Length; i++)
+                for (int i = 0; i < sim.pelt_layers.layers.Count; i++)
                 {
                     pelts.Add(new PeltLayerData(sim.pelt_layers.layers[i].layer_id, sim.pelt_layers.layers[i].color));
                 }
@@ -243,15 +243,15 @@ namespace TS4SimRipper
             {
                 this.sculpts[i] = new TGI((uint)ResourceTypes.Sculpt, 0, simSculpts[i]);
             }
-            TS4SaveGame.Modifier[] faceMods = morphs.face_modifiers != null ? morphs.face_modifiers : new TS4SaveGame.Modifier[0];
-            this.faceModifiers = new SimModifierData[faceMods.Length];
-            for (int i = 0; i < faceMods.Length; i++)
+            var faceMods = morphs.face_modifiers != null ? morphs.face_modifiers : new List<TS4SaveGame.BlobSimFacialCustomizationData.Modifier>();
+            this.faceModifiers = new SimModifierData[faceMods.Count];
+            for (int i = 0; i < faceMods.Count; i++)
             {
                 this.faceModifiers[i] = new SimModifierData(new TGI((uint)ResourceTypes.SimModifier, 0, faceMods[i].key), faceMods[i].amount);
             }
-            TS4SaveGame.Modifier[] bodyMods = morphs.body_modifiers != null ? morphs.body_modifiers : new TS4SaveGame.Modifier[0];
-            this.bodyModifiers = new SimModifierData[bodyMods.Length];
-            for (int i = 0; i < bodyMods.Length; i++)
+            var bodyMods = morphs.body_modifiers != null ? morphs.body_modifiers : new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
+            this.bodyModifiers = new SimModifierData[bodyMods.Count];
+            for (int i = 0; i < bodyMods.Count; i++)
             {
                 this.bodyModifiers[i] = new SimModifierData(new TGI((uint)ResourceTypes.SimModifier, 0, bodyMods[i].key), bodyMods[i].amount);
             }
@@ -262,7 +262,7 @@ namespace TS4SimRipper
             this.unknown3 = this.species == Species.Human ? 0 : 0x8003FC57;
 
             List<OutfitData> outfitList = new List<OutfitData>();
-            for (int i = 0; i < sim.outfits.outfits.Length; i++)
+            for (int i = 0; i < sim.outfits.outfits.Count; i++)
             {
                 List<OutfitData.OutfitDesc.PartEntry> parts = new List<OutfitData.OutfitDesc.PartEntry>();
                 for (int j = 0; j < sim.outfits.outfits[i].parts.ids.Length; j++)
@@ -291,15 +291,15 @@ namespace TS4SimRipper
             {
                 this.sculptsGenetic[i] = new TGI((uint)ResourceTypes.Sculpt, 0, geneticSculpts[i]);
             }
-            TS4SaveGame.Modifier[] faceGenetic = gmorphs.face_modifiers != null ? gmorphs.face_modifiers : new TS4SaveGame.Modifier[0];
-            this.faceModifiersGenetic = new SimModifierData[faceGenetic.Length];
-            for (int i = 0; i < faceGenetic.Length; i++)
+            var faceGenetic = gmorphs.face_modifiers != null ? gmorphs.face_modifiers : new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
+            this.faceModifiersGenetic = new SimModifierData[faceGenetic.Count];
+            for (int i = 0; i < faceGenetic.Count; i++)
             {
                 this.faceModifiersGenetic[i] = new SimModifierData(new TGI((uint)ResourceTypes.SimModifier, 0, faceGenetic[i].key), faceGenetic[i].amount);
             }
-            TS4SaveGame.Modifier[] bodyGenetic = gmorphs.body_modifiers != null ? gmorphs.body_modifiers : new TS4SaveGame.Modifier[0];
-            this.bodyModifiersGenetic = new SimModifierData[bodyGenetic.Length];
-            for (int i = 0; i < bodyGenetic.Length; i++)
+            var bodyGenetic = gmorphs.body_modifiers != null ? gmorphs.body_modifiers : new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
+            this.bodyModifiersGenetic = new SimModifierData[bodyGenetic.Count];
+            for (int i = 0; i < bodyGenetic.Count; i++)
             {
                 this.bodyModifiersGenetic[i] = new SimModifierData(new TGI((uint)ResourceTypes.SimModifier, 0, bodyGenetic[i].key), bodyGenetic[i].amount);
             }
@@ -310,7 +310,7 @@ namespace TS4SimRipper
                 float.TryParse(physiqueGenetic[i], NumberStyles.Float, CultureInfo.InvariantCulture, out this.genetic_physique[i]);
             }
             List<PartEntryGenetic> caspGenetic = new List<PartEntryGenetic>();
-            for (int i = 0; i < sim.genetic_data.parts_list.parts.Length; i++)
+            for (int i = 0; i < sim.genetic_data.parts_list.parts.Count; i++)
             {
                 uint group = 0;
                 var tmp = GameTGIs.Where(p => p.Key.Type == (uint)ResourceTypes.CASP & p.Key.Instance == sim.genetic_data.parts_list.parts[i].id);
@@ -327,7 +327,7 @@ namespace TS4SimRipper
             List<PartEntryGenetic> caspGrowth = new List<PartEntryGenetic>();
             if (sim.genetic_data.growth_parts_list != null && sim.genetic_data.growth_parts_list.parts != null)
             {
-                for (int i = 0; i < sim.genetic_data.growth_parts_list.parts.Length; i++)
+                for (int i = 0; i < sim.genetic_data.growth_parts_list.parts.Count; i++)
                 {
                     uint group = 0;
                     var tmp = GameTGIs.Where(p => p.Key.Type == (uint)ResourceTypes.CASP & p.Key.Instance == sim.genetic_data.growth_parts_list.parts[i].id);

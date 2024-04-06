@@ -28,12 +28,12 @@ using System.Drawing.Imaging;
 using System.Resources;
 using s4pi.ImageResource;
 using ProtoBuf;
-
+using TS4SaveGame= EA.Sims4.Persistence;
 namespace TS4SimRipper
 {
     public partial class Form1 : Form
     {
-        private Image DisplayablePelt(TS4SaveGame.PeltLayerData[] peltLayers, Image sculptOverlay, float[] physiqueWeights)
+        private Image DisplayablePelt(List<TS4SaveGame.PeltLayerData> peltLayers, Image sculptOverlay, float[] physiqueWeights)
         {
             Bitmap details;
             if (currentOccult == SimOccult.Werewolf)
@@ -84,7 +84,7 @@ namespace TS4SimRipper
             }
 
             Bitmap pelt = null;
-            for (int p = 0; p < peltLayers.Length; p++)
+            for (int p = 0; p < peltLayers.Count; p++)
             {
                 PeltLayer peltLayer = FetchGamePeltLayer(new TGI((uint)ResourceTypes.PeltLayer, 0, peltLayers[p].layer_id), ref errorList);
                 Bitmap alpha = FetchGameImageFromRLE(new TGI((uint)ResourceTypes.RLE2, 0, peltLayer.TextureKey), -1, ref errorList);

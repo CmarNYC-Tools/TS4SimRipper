@@ -24,7 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using Ookii.Dialogs;
+using Ookii.Dialogs.Wpf;
 
 namespace TS4SimRipper
 {
@@ -51,8 +51,7 @@ namespace TS4SimRipper
             findFolder.Description = "Select the folder where your game packages are located";
             findFolder.UseDescriptionForTitle = true;
             findFolder.SelectedPath = TS4PathString.Text;
-            DialogResult res = findFolder.ShowDialog();
-            if (res == DialogResult.OK)
+            if (findFolder.ShowDialog() == true)
             {
                 TS4PathString.Text = findFolder.SelectedPath;
             }
@@ -65,8 +64,7 @@ namespace TS4SimRipper
             findFolder.Description = "Select the folder where your Sims 4 SDX downloaded content is located";
             findFolder.UseDescriptionForTitle = true;
             findFolder.SelectedPath = TS4ContentString.Text;
-            DialogResult res = findFolder.ShowDialog();
-            if (res == DialogResult.OK)
+            if (findFolder.ShowDialog() == true)
             {
                 TS4ContentString.Text = findFolder.SelectedPath;
             }
@@ -79,8 +77,7 @@ namespace TS4SimRipper
             findFolder.Description = "Select the folder where your Sims 4 mods and custom content are located";
             findFolder.UseDescriptionForTitle = true;
             findFolder.SelectedPath = TS4UserPathString.Text;
-            DialogResult res = findFolder.ShowDialog();
-            if (res == DialogResult.OK)
+            if (findFolder.ShowDialog() == true)
             {
                 TS4UserPathString.Text = findFolder.SelectedPath;
             }
@@ -93,8 +90,7 @@ namespace TS4SimRipper
             findFolder.Description = "Select the folder where your Sims 4 savegame files are located";
             findFolder.UseDescriptionForTitle = true;
             findFolder.SelectedPath = TS4SavesPathString.Text;
-            DialogResult res = findFolder.ShowDialog();
-            if (res == DialogResult.OK)
+            if (findFolder.ShowDialog() == true)
             {
                 TS4SavesPathString.Text = findFolder.SelectedPath;
             }

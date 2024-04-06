@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "options": {
+        "env": {
+        }
+    },
+    "tasks": [
+        {
+            "label": "build",
+            "options": { "statusbar": {"hide": true}},
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/TS4SimRipper.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

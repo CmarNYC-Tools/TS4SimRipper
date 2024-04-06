@@ -14,12 +14,12 @@ using ProtoBuf;
 using s4pi.Package;
 using s4pi.Interfaces;
 using s4pi.ImageResource;
-
+using TS4SaveGame= EA.Sims4.Persistence;
 namespace TS4SimRipper
 {
     public partial class Form1 : Form
     {
-        string version = "TS4 SimRipper Classic v3.14.2.0";
+        string version = "TS4 SimRipper Classic v3.14.2.1";
         ulong[] frameIDMtF4male = new ulong[] { 0x27FE2BD7D11FDE65UL, 0x7A9D44AB67D00802UL };
         ulong[] frameIDMtF4female = new ulong[] { 0xA1A3F64ED26BCED8UL, 0x8ABEBBC4544AAE5BUL };
         ulong[] frameIDFtM = new ulong[] { 0x73290F92433C9DCCUL, 0xBD2A4BDE5C973977UL };
@@ -48,7 +48,7 @@ namespace TS4SimRipper
         int currentSkinSet;
         Bitmap currentTanLines;
         float[] currentPhysique;
-        TS4SaveGame.PeltLayerData[] currentPelt;
+        List<TS4SaveGame.PeltLayerData> currentPelt;
         ulong currentPaintedCoatInstance;
 
         MorphMap[] frameModifier = new MorphMap[2];
@@ -70,6 +70,7 @@ namespace TS4SimRipper
         public Form1()
         {
             InitializeComponent();
+            this.menuStrip1.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8f);
             bool debug = false;
             StartMessage starter = new StartMessage();
             starter.Show();
@@ -382,9 +383,9 @@ namespace TS4SimRipper
             if (sim.attributes != null && sim.attributes.occult_tracker != null && sim.attributes.occult_tracker.occult_sim_infos != null)
             {
                 Occults_comboBox.Enabled = true;
-                for (int i = 0; i < sim.attributes.occult_tracker.occult_sim_infos.Length; i++)
+                for (int i = 0; i < sim.attributes.occult_tracker.occult_sim_infos.Count; i++)
                 {
-                    TS4SaveGame.OccultSimData occult = sim.attributes.occult_tracker.occult_sim_infos[i];
+                    TS4SaveGame.PersistableOccultTracker.OccultSimData occult = sim.attributes.occult_tracker.occult_sim_infos[i];
                     SimOccult occultType = (SimOccult)occult.occult_type;
                     Occults_comboBox.Items.Add(sim.attributes.occult_tracker.occult_types == 16 && occultType == SimOccult.Human ? SimOccult.Spellcaster : occultType);
                     if (sim.attributes.occult_tracker.current_occult_types == occult.occult_type)
@@ -486,10 +487,10 @@ namespace TS4SimRipper
             //  Package testpack = (Package)Package.NewPackage(1);
 
             ulong[] sculpts = new ulong[0];
-            TS4SaveGame.Modifier[] faceModifiers = new TS4SaveGame.Modifier[0];
-            TS4SaveGame.Modifier[] bodyModifiers = new TS4SaveGame.Modifier[0];
+            List<TS4SaveGame.BlobSimFacialCustomizationData.Modifier>faceModifiers = new List<TS4SaveGame.BlobSimFacialCustomizationData.Modifier> ();
+            List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier> bodyModifiers = new List<TS4SaveGame.BlobSimFacialCustomizationData.Modifier>();
             string[] physique = null;
-            TS4SaveGame.OutfitData[] outfits = new TS4SaveGame.OutfitData[0];
+            List<TS4SaveGame.OutfitData> outfits = new List<TS4SaveGame.OutfitData>();
             ulong skintone = 0;
             float skincolorShift = 0;
 
@@ -506,17 +507,17 @@ namespace TS4SimRipper
 
             if (currentOccult != SimOccult.Human && sim.attributes != null && sim.attributes.occult_tracker != null && sim.attributes.occult_tracker.occult_sim_infos != null)
             {
-                for (int i = 0; i < sim.attributes.occult_tracker.occult_sim_infos.Length; i++)
+                for (int i = 0; i < sim.attributes.occult_tracker.occult_sim_infos.Count; i++)
                 {
-                    TS4SaveGame.OccultSimData occultSim = sim.attributes.occult_tracker.occult_sim_infos[i];
+                    TS4SaveGame.PersistableOccultTracker.OccultSimData occultSim = sim.attributes.occult_tracker.occult_sim_infos[i];
                     SimOccult occultType = (SimOccult)occultSim.occult_type;
                     if (occultType == currentOccult)
                     {
                         Stream s2 = new MemoryStream(occultSim.facial_attributes);
                         TS4SaveGame.BlobSimFacialCustomizationData morphs = Serializer.Deserialize<TS4SaveGame.BlobSimFacialCustomizationData>(s2);
                         sculpts = morphs.sculpts != null ? morphs.sculpts : new ulong[0];
-                        faceModifiers = morphs.face_modifiers != null ? morphs.face_modifiers : new TS4SaveGame.Modifier[0];
-                        bodyModifiers = morphs.body_modifiers != null ? morphs.body_modifiers : new TS4SaveGame.Modifier[0];
+                        faceModifiers = morphs.face_modifiers != null ? morphs.face_modifiers : new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
+                        bodyModifiers = morphs.body_modifiers != null ? morphs.body_modifiers : new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
                         physique = occultSim.physique.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                         outfits = occultSim.outfits.outfits;
                         skintone = occultSim.skin_tone;
@@ -530,8 +531,8 @@ namespace TS4SimRipper
                 Stream s2 = new MemoryStream(sim.facial_attr);
                 TS4SaveGame.BlobSimFacialCustomizationData morphs = Serializer.Deserialize<TS4SaveGame.BlobSimFacialCustomizationData>(s2);
                 sculpts = morphs.sculpts != null ? morphs.sculpts : new ulong[0];
-                faceModifiers = morphs.face_modifiers != null ? morphs.face_modifiers : new TS4SaveGame.Modifier[0];
-                bodyModifiers = morphs.body_modifiers != null ? morphs.body_modifiers : new TS4SaveGame.Modifier[0];
+                faceModifiers = morphs.face_modifiers != null ? morphs.face_modifiers : new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
+                bodyModifiers = morphs.body_modifiers != null ? morphs.body_modifiers : new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
                 physique = sim.physique.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 outfits = sim.outfits.outfits;
                 skintone = sim.skin_tone;
@@ -554,12 +555,12 @@ namespace TS4SimRipper
             OutfitCategory? currentCategory = null;
             int categoryCount = 1;
             int categoryIndex = 0;
-            for (int o = 0; o < outfits.Length; o++)
+            for (int o = 0; o < outfits.Count; o++)
             {
                 LogMe(log, "Loading outfit " + o.ToString() + " from savegame");
                 if (outfits[o].parts.ids == null) continue;
                 TS4SaveGame.OutfitData outfit = outfits[o];
-                TS4SaveGame.IdList parts = outfit.parts;
+                var parts = outfit.parts;
                 List<CASP> casps = new List<CASP>();
                 List<string> packNames = new List<string>();
                 List<ulong> colorShifts = new List<ulong>();
@@ -834,7 +835,7 @@ namespace TS4SimRipper
             Dictionary<ulong, string> modifierNames = CASTuning.CASModifierNames(currentSpecies, occultState, currentAge, currentGender);
             Dictionary<ulong, float> modifierScaling = CASTuning.CASModifierScales(currentSpecies, occultState, currentAge, currentGender);
 
-            foreach (TS4SaveGame.Modifier m in faceModifiers)
+            foreach (EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier m in faceModifiers)
             {
                 TGI tgi = new TGI((uint)ResourceTypes.SimModifier, 0, m.key);
                 SMOD smod = FetchGameSMOD(tgi, ref errorList);
@@ -899,7 +900,7 @@ namespace TS4SimRipper
 
           //  if (debug) errorList += "DisplaySim loaded face modifiers" + Environment.NewLine;
 
-            foreach (TS4SaveGame.Modifier m in bodyModifiers)
+            foreach (EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier m in bodyModifiers)
             {
                 TGI tgi = new TGI((uint)ResourceTypes.SimModifier, 0, m.key);
                 SMOD smod = FetchGameSMOD(tgi, ref errorList);
@@ -987,7 +988,7 @@ namespace TS4SimRipper
                     {
                         SkinState_comboBox.Enabled = true;
                         SkinState_comboBox.SelectedIndex = currentSkinSet;
-                        if (sim.attributes.suntan_tracker.outfit_part_data_list != null && sim.attributes.suntan_tracker.outfit_part_data_list.Length > 0)
+                        if (sim.attributes.suntan_tracker.outfit_part_data_list != null && sim.attributes.suntan_tracker.outfit_part_data_list.Count > 0)
                         {
                             foreach (TS4SaveGame.PartData part in sim.attributes.suntan_tracker.outfit_part_data_list)
                             {

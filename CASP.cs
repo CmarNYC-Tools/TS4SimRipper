@@ -100,6 +100,7 @@ namespace TS4SimRipper
         uint UVoverride;      //added in version 0x1b, so far same values as bodyType
         byte emissionIndex;   // added in version 0x1d, for alien glow 
         byte reserved;        // added in version 0x2A
+        byte reserved2;        // added in version 49
         byte IGTcount;        // Resource reference table in I64GT format (not TGI64)
         // --repeat(count)
         TGI[] IGTtable;
@@ -620,6 +621,10 @@ namespace TS4SimRipper
             {
                 reserved = br.ReadByte();
             }
+            if (version >= 49)
+            {
+                reserved2 = br.ReadByte();
+            }
             IGTcount = br.ReadByte();
             IGTtable = new TGI[IGTcount];
             for (int i = 0; i < IGTcount; i++)
@@ -760,6 +765,10 @@ namespace TS4SimRipper
             if (version >= 42)
             {
                 bw.Write(reserved);
+            }
+            if (version >= 49)
+            {
+                bw.Write(reserved2);
             }
             long tablePos = bw.BaseStream.Position;
             bw.BaseStream.Position = offsetPos;
