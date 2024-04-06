@@ -17,6 +17,19 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "options": { "statusbar": {"hide": false}},
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "TS4SimRipper.csproj",
+                "-c:Release"
+            ],
+            "problemMatcher": "$msCompile"
         }
+    
     ]
 }

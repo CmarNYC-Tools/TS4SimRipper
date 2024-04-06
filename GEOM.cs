@@ -2772,9 +2772,9 @@ namespace TS4SimRipper
 
         internal static Vector3[][][][][] SetupSeamVertexPositions()
         {
-            Vector3[][][][][] meshSeamVerts = new Vector3[4][][][][];   //indices: species, age/gender, lod, seam, verts
-            //  dimension 0: 0 = human, 1 = dog, 2 = cat, 3 = little dog
-            //  dimension 1: human: 0 = male, 1 = female, 2 = child, 3 = toddler; little dog: 0 = adult; dog/cat: 0 = adult, 1 = child
+            Vector3[][][][][] meshSeamVerts = new Vector3[6][][][][];   //indices: species, age/gender, lod, seam, verts
+            //  dimension 0: 0 = human, 1 = dog, 2 = cat, 3 = little dog, 4 =fox, 5= horse
+            //  dimension 1: human: 0 = male, 1 = female, 2 = child, 3 = toddler; little dog: 0 = adult; dog/cat: 0 = adult, 1 = child; fox: 0 = adult; horse: 0 = adult, 1 = child; 
             //  dimension 2: lod
             //  dimension 3: Ankles = 0, Pet tail = 1, Pet ears = 2, Neck = 3, Waist = 4, WaistAdultFemale = 5,  WaistAdultMale = 6
             meshSeamVerts[0] = new Vector3[4][][][];        //ageGenders
@@ -3086,6 +3086,110 @@ namespace TS4SimRipper
             meshSeamVerts[3][0][3][4] = new Vector3[0];     //Waist
             meshSeamVerts[3][0][3][5] = new Vector3[0];     //WaistAdultFemale
             meshSeamVerts[3][0][3][6] = new Vector3[0];     //WaistAdultMale
+
+            meshSeamVerts[4] = new Vector3[4][][][];    //ageSpecies
+            meshSeamVerts[4][0] = new Vector3[4][][];   //Adult Fox
+            meshSeamVerts[4][0][0] = new Vector3[7][];  //Adult Fox LOD0 seams
+            meshSeamVerts[4][0][0][0] = new Vector3[0]; //Ankles
+            meshSeamVerts[4][0][0][1] = new Vector3[0]; //Tail
+            meshSeamVerts[4][0][0][2] = new Vector3[0]; //Ears
+            meshSeamVerts[4][0][0][3] = new Vector3[0]; //Neck
+            meshSeamVerts[4][0][0][4] = new Vector3[0]; //Waist
+            meshSeamVerts[4][0][0][5] = new Vector3[0]; //WaistAdultFemale
+            meshSeamVerts[4][0][0][6] = new Vector3[0]; //WaistAdultMale
+            meshSeamVerts[4][0][1] = new Vector3[7][];  //Adult Fox LOD1 seams
+            meshSeamVerts[4][0][1][0] = new Vector3[0]; //Ankles
+            meshSeamVerts[4][0][1][1] = new Vector3[0]; //Tail
+            meshSeamVerts[4][0][1][2] = new Vector3[0]; //Ears
+            meshSeamVerts[4][0][1][3] = new Vector3[0]; //Neck
+            meshSeamVerts[4][0][1][4] = new Vector3[0]; //Waist
+            meshSeamVerts[4][0][1][5] = new Vector3[0]; //WaistAdultFemale
+            meshSeamVerts[4][0][1][6] = new Vector3[0]; //WaistAdultMale
+            meshSeamVerts[4][0][2] = new Vector3[7][];  //Adult Fox LOD2 seams
+            meshSeamVerts[4][0][2][0] = new Vector3[0]; //Ankles
+            meshSeamVerts[4][0][2][1] = new Vector3[0]; //Tail
+            meshSeamVerts[4][0][2][2] = new Vector3[0]; //Ears
+            meshSeamVerts[4][0][2][3] = new Vector3[0]; //Neck
+            meshSeamVerts[4][0][2][4] = new Vector3[0]; //Waist
+            meshSeamVerts[4][0][2][5] = new Vector3[0]; //WaistAdultFemale
+            meshSeamVerts[4][0][2][6] = new Vector3[0]; //WaistAdultMale
+            meshSeamVerts[4][0][3] = new Vector3[7][];  //Adult Fox LOD3 seams
+            meshSeamVerts[4][0][3][0] = new Vector3[0]; //Ankles
+            meshSeamVerts[4][0][3][1] = new Vector3[0]; //Tail
+            meshSeamVerts[4][0][3][2] = new Vector3[0]; //Ears
+            meshSeamVerts[4][0][3][3] = new Vector3[0]; //Neck
+            meshSeamVerts[4][0][3][4] = new Vector3[0]; //Waist
+            meshSeamVerts[4][0][3][5] = new Vector3[0]; //WaistAdultFemale
+            meshSeamVerts[4][0][3][6] = new Vector3[0]; //WaistAdultMale
+
+            meshSeamVerts[5] = new Vector3[4][][][];    //ageSpecies
+            meshSeamVerts[5][0] = new Vector3[4][][];   //Adult Horse
+            meshSeamVerts[5][0][0] = new Vector3[7][];  //Adult Horse LOD0 seams
+            meshSeamVerts[5][0][0][0] = new Vector3[0]; //Ankles
+            meshSeamVerts[5][0][0][1] = new Vector3[0]; //Tail
+            meshSeamVerts[5][0][0][2] = new Vector3[0]; //Ears
+            meshSeamVerts[5][0][0][3] = new Vector3[0]; //Neck
+            meshSeamVerts[5][0][0][4] = new Vector3[0]; //Waist
+            meshSeamVerts[5][0][0][5] = new Vector3[0]; //WaistAdultFemale
+            meshSeamVerts[5][0][0][6] = new Vector3[0]; //WaistAdultMale
+            meshSeamVerts[5][0][1] = new Vector3[7][];  //Adult Horse LOD1 seams
+            meshSeamVerts[5][0][1][0] = new Vector3[0]; //Ankles
+            meshSeamVerts[5][0][1][1] = new Vector3[0]; //Tail
+            meshSeamVerts[5][0][1][2] = new Vector3[0]; //Ears
+            meshSeamVerts[5][0][1][3] = new Vector3[0]; //Neck
+            meshSeamVerts[5][0][1][4] = new Vector3[0]; //Waist
+            meshSeamVerts[5][0][1][5] = new Vector3[0]; //WaistAdultFemale
+            meshSeamVerts[5][0][1][6] = new Vector3[0]; //WaistAdultMale
+            meshSeamVerts[5][0][2] = new Vector3[7][];  //Adult Horse LOD2 seams
+            meshSeamVerts[5][0][2][0] = new Vector3[0]; //Ankles
+            meshSeamVerts[5][0][2][1] = new Vector3[0]; //Tail
+            meshSeamVerts[5][0][2][2] = new Vector3[0]; //Ears
+            meshSeamVerts[5][0][2][3] = new Vector3[0]; //Neck
+            meshSeamVerts[5][0][2][4] = new Vector3[0]; //Waist
+            meshSeamVerts[5][0][2][5] = new Vector3[0]; //WaistAdultFemale
+            meshSeamVerts[5][0][2][6] = new Vector3[0]; //WaistAdultMale
+            meshSeamVerts[5][0][3] = new Vector3[7][]; //Adult Horse LOD3 seams
+            meshSeamVerts[5][0][3][0] = new Vector3[0]; //Ankles
+            meshSeamVerts[5][0][3][1] = new Vector3[0]; //Tail
+            meshSeamVerts[5][0][3][2] = new Vector3[0]; //Ears
+            meshSeamVerts[5][0][3][3] = new Vector3[0]; //Neck
+            meshSeamVerts[5][0][3][4] = new Vector3[0]; //Waist
+            meshSeamVerts[5][0][3][5] = new Vector3[0]; //WaistAdultFemale
+            meshSeamVerts[5][0][3][6] = new Vector3[0]; //WaistAdultMale
+
+            meshSeamVerts[5][1] = new Vector3[4][][];   //Child Horse
+            meshSeamVerts[5][1][0] = new Vector3[7][];  //Child Horse LOD0 seams
+            meshSeamVerts[5][1][0][0] = new Vector3[0]; //Ankles
+            meshSeamVerts[5][1][0][1] = new Vector3[0]; //Tail
+            meshSeamVerts[5][1][0][2] = new Vector3[0]; //Ears
+            meshSeamVerts[5][1][0][3] = new Vector3[0]; //Neck
+            meshSeamVerts[5][1][0][4] = new Vector3[0]; //Waist
+            meshSeamVerts[5][1][0][5] = new Vector3[0]; //WaistChildFemale
+            meshSeamVerts[5][1][0][6] = new Vector3[0]; //WaistChildMale
+            meshSeamVerts[5][1][1] = new Vector3[7][];  //Child Horse LOD1 seams
+            meshSeamVerts[5][1][1][0] = new Vector3[0]; //Ankles
+            meshSeamVerts[5][1][1][1] = new Vector3[0]; //Tail
+            meshSeamVerts[5][1][1][2] = new Vector3[0]; //Ears
+            meshSeamVerts[5][1][1][3] = new Vector3[0]; //Neck
+            meshSeamVerts[5][1][1][4] = new Vector3[0]; //Waist
+            meshSeamVerts[5][1][1][5] = new Vector3[0]; //WaistChildFemale
+            meshSeamVerts[5][1][1][6] = new Vector3[0]; //WaistChildMale
+            meshSeamVerts[5][1][2] = new Vector3[7][];  //Child Horse LOD2 seams
+            meshSeamVerts[5][1][2][0] = new Vector3[0]; //Ankles
+            meshSeamVerts[5][1][2][1] = new Vector3[0]; //Tail
+            meshSeamVerts[5][1][2][2] = new Vector3[0]; //Ears
+            meshSeamVerts[5][1][2][3] = new Vector3[0]; //Neck
+            meshSeamVerts[5][1][2][4] = new Vector3[0]; //Waist
+            meshSeamVerts[5][1][2][5] = new Vector3[0]; //WaistChildFemale
+            meshSeamVerts[5][1][2][6] = new Vector3[0]; //WaistChildMale
+            meshSeamVerts[5][1][3] = new Vector3[7][]; //Child Horse LOD3 seams
+            meshSeamVerts[5][1][3][0] = new Vector3[0]; //Ankles
+            meshSeamVerts[5][1][3][1] = new Vector3[0]; //Tail
+            meshSeamVerts[5][1][3][2] = new Vector3[0]; //Ears
+            meshSeamVerts[5][1][3][3] = new Vector3[0]; //Neck
+            meshSeamVerts[5][1][3][4] = new Vector3[0]; //Waist
+            meshSeamVerts[5][1][3][5] = new Vector3[0]; //WaistChildFemale
+            meshSeamVerts[5][1][3][6] = new Vector3[0]; //WaistChildMale
 
             return meshSeamVerts;
         }

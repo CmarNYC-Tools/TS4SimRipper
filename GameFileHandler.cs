@@ -131,10 +131,20 @@ namespace TS4SimRipper
             {
                 List<string> pathsSim = new List<string>(Directory.GetFiles(TS4FilesPath, "Simulation*Build*.package", SearchOption.AllDirectories));
                 List<string> pathsClient = new List<string>(Directory.GetFiles(TS4FilesPath, "Client*Build*.package", SearchOption.AllDirectories));
-                pathsSim.Sort();
-                pathsClient.Sort();
+                
+                if(Path.GetFileName(TS4FilesPath) == "Contents"){
+                    var appPath = Path.GetDirectoryName(Path.GetDirectoryName(TS4FilesPath));
+                    var packs = Path.Combine(appPath, "The Sims 4 Packs");
+                    if(Directory.Exists(packs)){
+                        pathsSim.AddRange(Directory.GetFiles(packs, "Simulation*Build*.package", SearchOption.AllDirectories));
+                        pathsClient.AddRange(Directory.GetFiles(packs, "Client*Build*.package", SearchOption.AllDirectories));
+                    }
+
+                }
                 paths.AddRange(pathsClient);
                 paths.AddRange(pathsSim);
+                pathsSim.Sort();
+                pathsClient.Sort();
             }
             catch (DirectoryNotFoundException e)
             {
@@ -1316,7 +1326,7 @@ namespace TS4SimRipper
                     }
                 }
             }
-            errorMsg += "Can't find cat/dog Pelt Layer " + tgi.ToString() + Environment.NewLine;
+            errorMsg += "Can't find cat/dog/horse Pelt Layer " + tgi.ToString() + Environment.NewLine;
             return null;
         }
         private RIG FetchGameRig(TGI tgi, ref string errorMsg, out string rigPackage)

@@ -73,7 +73,14 @@ namespace TS4SimRipper
             }
             else
             {
-                details = (currentSpecies == Species.Cat) ? Properties.Resources.CatSkin : Properties.Resources.DogSkin;
+                details = currentSpecies switch{
+                    Species.Cat =>Properties.Resources.CatSkin,
+                    Species.Dog =>Properties.Resources.DogSkin,
+                    Species.LittleDog =>Properties.Resources.DogSkin,
+                    Species.Fox => Properties.Resources.DogSkin,
+                    Species.Horse => Properties.Resources.HorseSkin,
+                    _=>throw new Exception($"Unable to display pelt of unknown animal type.")
+                };
             }
             if (details.Size != currentSize) details = new Bitmap(details, currentSize);
 

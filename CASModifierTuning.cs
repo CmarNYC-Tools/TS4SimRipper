@@ -275,6 +275,8 @@ namespace TS4SimRipper
                                     else if (String.Compare(reader.Value, "SMALLDOG") == 0) species |= Species.LittleDog;
                                     else if (String.Compare(reader.Value, "DOG") == 0) species |= Species.Dog;
                                     else if (String.Compare(reader.Value, "CAT") == 0) species |= Species.Cat;
+                                    else if (String.Compare(reader.Value, "FOX") == 0) species |= Species.Fox;
+                                    else if (String.Compare(reader.Value, "HORSE") == 0) species |= Species.Horse;
                                 }
                             }
                         }
@@ -403,6 +405,8 @@ namespace TS4SimRipper
                                     else if (String.Compare(reader.Value, "SMALLDOG") == 0) species |= Species.LittleDog;
                                     else if (String.Compare(reader.Value, "DOG") == 0) species |= Species.Dog;
                                     else if (String.Compare(reader.Value, "CAT") == 0) species |= Species.Cat;
+                                    else if (String.Compare(reader.Value, "FOX") == 0) species |= Species.Fox;
+                                    else if (String.Compare(reader.Value, "HORSE") == 0) species |= Species.Horse;
                                 }
                             }
                         }
@@ -585,6 +589,8 @@ namespace TS4SimRipper
                                     else if (String.Compare(reader.Value, "SMALLDOG") == 0) species |= Species.LittleDog;
                                     else if (String.Compare(reader.Value, "DOG") == 0) species |= Species.Dog;
                                     else if (String.Compare(reader.Value, "CAT") == 0) species |= Species.Cat;
+                                    else if (String.Compare(reader.Value, "FOX") == 0) species |= Species.Fox;
+                                    else if (String.Compare(reader.Value, "HORSE") == 0) species |= Species.Horse;
                                 }
                             }
                         }

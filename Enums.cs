@@ -296,12 +296,25 @@ namespace TS4SimRipper
         BirthmarkTorsoBack = 0x5C,
         BirthmarkTorsoFront = 0x5D,
         BirthmarkArms = 0x5E,
-        Unknown5 = 0x5F,
-        Unknown6 = 0x60,
-        Unknown7 = 0x61,
-        BirthmarkLegs = 0x62,
-        StretchmarksFront = 0x63,
-        StretchmarksBack = 0x64
+        MoleFace,
+        MoleChestUpper,
+        MoleBackUpper,
+        BirthmarkLegs,
+        StretchMarksFront,
+        StretchMarksBack,
+
+
+        Saddle,
+        Bridle,
+        Reins,
+        Blanket,
+        SkinDetailHoofColor,
+        HairMane,
+        HairTail,
+        HairForelock,
+        HairFeathers,
+        Horn,
+        TailBase,
     }
 
     public enum BodySubType
