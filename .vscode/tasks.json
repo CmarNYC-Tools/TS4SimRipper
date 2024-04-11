@@ -2,6 +2,7 @@
     "version": "2.0.0",
     "options": {
         "env": {
+            "SIMRIPPER_VERSION": "3.14.2.4"
         }
     },
     "tasks": [
@@ -12,7 +13,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/TS4SimRipper.csproj",
+                "${workspaceFolder}/src/TS4SimRipper.NET.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -25,7 +26,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "TS4SimRipper.csproj",
+                "src/TS4SimRipper.csproj",
                 "-c:Release"
             ],
             "problemMatcher": "$msCompile"

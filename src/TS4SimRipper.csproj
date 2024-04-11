@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net4.8</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PlatformTarget>x64</PlatformTarget>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <RootNamespace>TS4SimRipper</RootNamespace>
+    <AssemblyName>TS4SimRipper</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <LangVersion>8.0</LangVersion>
+    <SelfContained>false</SelfContained>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <ManifestKeyFile>TS4SimRipper_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>60C09E8E8648A004C24288ED7DF459FE973C025C</ManifestCertificateThumbprint>
+    <Version>$(SIMRIPPER_VERSION)</Version>
+    <ApplicationDisplayVersion>$(SIMRIPPER_VERSION)</ApplicationDisplayVersion>
+    <ApplicationVersion>$(SIMRIPPER_VERSION)</ApplicationVersion>
+    <AssemblyVersion>$(SIMRIPPER_VERSION)</AssemblyVersion>
+    <FileVersion>$(SIMRIPPER_VERSION)</FileVersion>
+    <Copyright>Copyright ©  2019</Copyright>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DDSPanel">
+      <HintPath>$(S4PI_LIB)\DDSPanel.dll</HintPath>
+    </Reference>
+    <Reference Include="s4pi.ImageResource">
+      <HintPath>$(S4PI_LIB)\s4pi.ImageResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s4pi.Interfaces">
+      <HintPath>$(S4PI_LIB)\s4pi.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="s4pi.Package">
+      <HintPath>$(S4PI_LIB)\s4pi.Package.dll</HintPath>
+    </Reference>
+    <Reference Include="s4pi.Settings">
+      <HintPath>$(S4PI_LIB)\s4pi.Settings.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="*.grannyrig">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="*.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="*.package">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="*.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="protobuf-net" Version="3.2.30"/>
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1"/>
+    <PackageReference Include="System.IO.Compression" Version="4.3.0" />
+    <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
+  </ItemGroup>
+</Project>

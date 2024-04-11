@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/net6.0-windows/win-x64/TS4SimRipper.exe",
+            "program": "${workspaceFolder}/src/bin/Debug/net8.0-windows/win-x64/TS4SimRipper.exe",
             "args": [],
             "cwd": "${workspaceFolder}",
         }

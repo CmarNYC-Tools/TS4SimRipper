@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PlatformTarget>x64</PlatformTarget>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <RootNamespace>TS4SimRipper</RootNamespace>
     <AssemblyName>TS4SimRipper</AssemblyName>
     <UseWindowsForms>true</UseWindowsForms>
@@ -14,6 +14,13 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <ManifestKeyFile>TS4SimRipper_TemporaryKey.pfx</ManifestKeyFile>
     <ManifestCertificateThumbprint>60C09E8E8648A004C24288ED7DF459FE973C025C</ManifestCertificateThumbprint>
+    <Version>$(SIMRIPPER_VERSION)</Version>
+    <ApplicationDisplayVersion>$(SIMRIPPER_VERSION)</ApplicationDisplayVersion>
+    <ApplicationVersion>$(SIMRIPPER_VERSION)</ApplicationVersion>
+    <AssemblyVersion>$(SIMRIPPER_VERSION)</AssemblyVersion>
+    <FileVersion>$(SIMRIPPER_VERSION)</FileVersion>
+    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
+    <Copyright>Copyright ©  2019</Copyright>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>portable</DebugType>
@@ -24,19 +31,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DDSPanel">
-      <HintPath>..\s4pi.Library\DDSPanel.dll</HintPath>
+      <HintPath>$(S4PI_LIB)\DDSPanel.dll</HintPath>
     </Reference>
     <Reference Include="s4pi.ImageResource">
-      <HintPath>..\s4pi.Library\s4pi.ImageResource.dll</HintPath>
+      <HintPath>$(S4PI_LIB)\s4pi.ImageResource.dll</HintPath>
     </Reference>
     <Reference Include="s4pi.Interfaces">
-      <HintPath>..\s4pi.Library\s4pi.Interfaces.dll</HintPath>
+      <HintPath>$(S4PI_LIB)\s4pi.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="s4pi.Package">
-      <HintPath>..\s4pi.Library\s4pi.Package.dll</HintPath>
+      <HintPath>$(S4PI_LIB)\s4pi.Package.dll</HintPath>
     </Reference>
     <Reference Include="s4pi.Settings">
-      <HintPath>..\s4pi.Library\s4pi.Settings.dll</HintPath>
+      <HintPath>$(S4PI_LIB)\s4pi.Settings.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
