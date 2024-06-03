@@ -141,10 +141,10 @@ namespace TS4SimRipper
                     }
 
                 }
-                paths.AddRange(pathsClient);
-                paths.AddRange(pathsSim);
                 pathsSim.Sort();
                 pathsClient.Sort();
+                paths.AddRange(pathsClient);
+                paths.AddRange(pathsSim);
             }
             catch (DirectoryNotFoundException e)
             {
