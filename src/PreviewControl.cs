@@ -270,9 +270,12 @@ namespace TS4SimRipper
                         pos[0] -= shapeVector.X * morphShape.weight * vertWeight;
                         pos[1] -= shapeVector.Y * morphShape.weight * vertWeight;
                         pos[2] -= shapeVector.Z * morphShape.weight * vertWeight;
-                        norm[0] -= normVector.X * morphNormals.weight * vertWeight;
-                        norm[1] -= normVector.Y * morphNormals.weight * vertWeight;
-                        norm[2] -= normVector.Z * morphNormals.weight * vertWeight;
+                        if(morphNormals != null)
+                        {
+                            norm[0] -= normVector.X * morphNormals.weight * vertWeight;
+                            norm[1] -= normVector.Y * morphNormals.weight * vertWeight;
+                            norm[2] -= normVector.Z * morphNormals.weight * vertWeight;
+                        }
                         morphMesh.setPosition(i, pos);
                         morphMesh.setNormal(i, norm);
                     }
@@ -728,14 +731,14 @@ namespace TS4SimRipper
                     {
                         if (GlassModel[i] != null && morphShape[d] != null && isBodyTypeForRegion((BodyType)i, morphShape[d].region))
                         {
-                            GlassModel[i] = LoadDMapMorph(log, GlassModel[i], morphShape[d], morphNormals[d]);
+                            GlassModel[i] = LoadDMapMorph(log, GlassModel[i], morphShape[d], morphNormals.ElementAtOrDefault(d));
                         }
                     }
                     for (int i = 0; i < BaseModel.Length; i++)
                     {
                         if (BaseModel[i] != null && morphShape[d] != null && isBodyTypeForRegion((BodyType)i, morphShape[d].region))
                         {
-                            BaseModel[i] = LoadDMapMorph(log, BaseModel[i], morphShape[d], morphNormals[d]);
+                            BaseModel[i] = LoadDMapMorph(log, BaseModel[i], morphShape[d], morphNormals.ElementAtOrDefault(d));
                         }
                     }
                 }

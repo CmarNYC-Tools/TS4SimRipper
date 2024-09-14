@@ -968,8 +968,8 @@ namespace TS4SimRipper
 
         public Vector3 GetAdjustedDelta(int x, int y, bool mirrorX, byte robeBlend)
         {
-            if (y < 0 || y > skinDeltas.Length) return new Vector3();
-            if (Math.Abs(x) > skinDeltas[y].Length) return new Vector3();
+            if (y < 0 || y >= skinDeltas.Length) return new Vector3();
+            if (Math.Abs(x) >= skinDeltas[y].Length) return new Vector3();
             float robeMult = (float)robeBlend / 63f;
             Vector3 tmpS = new Vector3(skinDeltas[y][Math.Abs(x)]);
             if (mirrorX || x < 0) tmpS.X = -tmpS.X;
