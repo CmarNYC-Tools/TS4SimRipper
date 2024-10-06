@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "options": {
         "env": {
-            "SIMRIPPER_VERSION": "3.14.2.5"
+            "SIMRIPPER_VERSION": "3.14.2.6"
         }
     },
     "tasks": [
@@ -26,7 +26,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "src/TS4SimRipper.csproj",
+                "src/TS4SimRipper.NET.csproj",
                 "-c:Release"
             ],
             "problemMatcher": "$msCompile"
