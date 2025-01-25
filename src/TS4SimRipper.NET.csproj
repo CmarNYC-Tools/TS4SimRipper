@@ -21,6 +21,7 @@
     <FileVersion>$(SIMRIPPER_VERSION)</FileVersion>
     <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
     <Copyright>Copyright ©  2019</Copyright>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>portable</DebugType>

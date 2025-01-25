@@ -8,8 +8,17 @@
             "name": "C#: TS4SimRipper Debug",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "buildn",
             "program": "${workspaceFolder}/src/bin/Debug/net8.0-windows/win-x64/TS4SimRipper.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "name": "C#: TS4SimRipper Debug NET4",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/bin/Debug/net4.8/win-x64/TS4SimRipper.exe",
             "args": [],
             "cwd": "${workspaceFolder}",
         }
