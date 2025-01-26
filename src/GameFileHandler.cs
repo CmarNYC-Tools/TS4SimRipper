@@ -124,22 +124,25 @@ namespace TS4SimRipper
             if (debug) MessageBox.Show("Starting setup game packs");
 
             string TS4FilesPath = Properties.Settings.Default.TS4Path;
+            var pathRoots = new List<string>() { TS4FilesPath };             
+            //Mac places packs in a sub folder outside of the main app
+            const string PackSubFolder = "The Sims 4 Packs";
+            var packs = Path.Combine(Path.GetDirectoryName(TS4FilesPath),PackSubFolder);
+            if(Directory.Exists(packs)) pathRoots.Add(packs);
+            else{
+                packs = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(TS4FilesPath)), PackSubFolder);
+                if(Directory.Exists(packs)) pathRoots.Add(packs);
+            }
             List<Package> gamePacks = new List<Package>();
             List<string> paths = new List<string>();
             List<bool> notBase = new List<bool>();
             try
             {
-                List<string> pathsSim = new List<string>(Directory.GetFiles(TS4FilesPath, "Simulation*Build*.package", SearchOption.AllDirectories));
-                List<string> pathsClient = new List<string>(Directory.GetFiles(TS4FilesPath, "Client*Build*.package", SearchOption.AllDirectories));
-                
-                if(Path.GetFileName(TS4FilesPath) == "Contents"){
-                    var appPath = Path.GetDirectoryName(Path.GetDirectoryName(TS4FilesPath));
-                    var packs = Path.Combine(appPath, "The Sims 4 Packs");
-                    if(Directory.Exists(packs)){
-                        pathsSim.AddRange(Directory.GetFiles(packs, "Simulation*Build*.package", SearchOption.AllDirectories));
-                        pathsClient.AddRange(Directory.GetFiles(packs, "Client*Build*.package", SearchOption.AllDirectories));
-                    }
-
+                List<string> pathsSim = new List<string>();
+                List<string> pathsClient = new List<string>();
+                foreach(var pathRoot in pathRoots){
+                    pathsSim.AddRange(Directory.GetFiles(pathRoot, "Simulation*Build*.package", SearchOption.AllDirectories));
+                    pathsClient.AddRange(Directory.GetFiles(pathRoot, "Client*Build*.package", SearchOption.AllDirectories));
                 }
                 pathsSim.Sort();
                 pathsClient.Sort();
