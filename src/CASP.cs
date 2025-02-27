@@ -497,6 +497,11 @@ namespace TS4SimRipper
             materialHash = br.ReadUInt32();
             parameterFlags = br.ReadByte();
             if (this.version >= 39) parameterFlags2 = br.ReadByte();
+
+            if (this.version >= 50)
+            {
+                this.LayerID = br.ReadUInt16();
+            }
             excludePartFlags = br.ReadUInt64();
             if (version >= 41)
             {
@@ -646,6 +651,9 @@ namespace TS4SimRipper
             bw.Write(materialHash);
             bw.Write(parameterFlags);
             if (this.version >= 39) bw.Write(parameterFlags2);
+            if(this.version >= 50){
+                bw.Write(this.LayerID);
+            }
             bw.Write(excludePartFlags);
             if (version >= 41)
             {
@@ -792,6 +800,8 @@ namespace TS4SimRipper
                 return s;
             }
         }
+
+        public ushort LayerID { get; private set; }
 
         internal class PartTag
         {

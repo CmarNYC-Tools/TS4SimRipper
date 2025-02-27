@@ -20,6 +20,8 @@ namespace TS4SimRipper
 
         public ulong TextureKey { get { return this.textureKey; } }
 
+        public byte[] BH_unknown { get; }
+
         public PeltLayer(BinaryReader br)
         {
             br.BaseStream.Position = 0;
@@ -32,6 +34,9 @@ namespace TS4SimRipper
                 this.linkedPeltLayer = br.ReadUInt64();
             }
             this.nameKey = br.ReadUInt32();
+            if(this.version >= 8){
+                this.BH_unknown = br.ReadBytes(5);
+            }
             this.textureKey = br.ReadUInt64();
             this.thumbnailKey = br.ReadUInt64();
             uint tagCount = br.ReadUInt32();
