@@ -33,6 +33,29 @@ namespace TS4SimRipper
 {
     public partial class Form1 : Form
     {
+        public Bitmap FetchCustomTattoo(TGI tgi, ref string errorMsg)
+        {
+            if (currentSaveGame == null)
+            {
+                errorMsg += "Current save game is null, can't read custom tattoo!" + Environment.NewLine;
+                return null;
+            }
+            if (tgi.Instance == 0UL)
+            {
+                errorMsg += "Tattoo tgi invalid, can't read custom tattoo!" + Environment.NewLine;
+                return null;
+            }
+            try
+            {
+                return (Bitmap) Bitmap.FromStream(currentSaveGame.GetResource(currentSaveGame.Find(r => r.ResourceType == tgi.Type & r.ResourceGroup == tgi.Group & r.Instance == tgi.Instance)));
+            }
+            catch (Exception ex)
+            {
+                errorMsg += $"Could not read custom tattoo {tgi}. Original error: {ex.Message}{Environment.NewLine}";
+                return null;
+            }
+        }
+
         public Bitmap FetchPaintedCoat(TGI tgi, ref string errorMsg)
         {
             if (currentSaveGame == null)
