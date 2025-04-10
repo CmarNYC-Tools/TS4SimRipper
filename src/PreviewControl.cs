@@ -1,4 +1,4 @@
-﻿/* TS4 SimRipper, a tool for creating custom content for The Sims 4,
+/* TS4 SimRipper, a tool for creating custom content for The Sims 4,
    Copyright (C) 2014  C. Marinetti
 
    This program is free software: you can redistribute it and/or modify
@@ -395,6 +395,7 @@ namespace TS4SimRipper
                 for (int i = 0; i < partGenders.Length; i++) partGenders[i] = AgeGender.None;
                 string[] packNames = currentOutfits[outfitIndex].packages;
                 ulong[] colorShifts = currentOutfits[outfitIndex].colorShifts;
+                uint[] layerIds = currentOutfits[outfitIndex].layerIds;
                 ulong excludeFlags = 0, excludeFlags2 = 0;
                 List<MeshInfo> meshRegions = new List<MeshInfo>();
                 float shoesKneeLayer = 0, shoesCalfLayer = 0;
@@ -496,7 +497,7 @@ namespace TS4SimRipper
                     packNames[i] = packname;
                     excludeFlags = excludeFlags | outfit[i].ExcludePartFlags;
                     excludeFlags2 = excludeFlags2 | outfit[i].ExcludePartFlags2;
-                    fullInfo += outfit[i].PartName + " (" + outfit[i].BodyType.ToString()  + ") Colorshift:  0x" + colorShifts[i].ToString("X16") + " (" + packname + ")" + Environment.NewLine + Environment.NewLine;
+                    fullInfo += $"{outfit[i].PartName} ({outfit[i].BodyType.ToString()}) LayerID: {layerIds[i]:X8} Colorshift:  0x{colorShifts[i].ToString("X16")} ({packname}){Environment.NewLine}{Environment.NewLine}";
                 }
 
                 for (int i = 0; i < outfit.Length; i++)

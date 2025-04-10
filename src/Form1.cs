@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -321,12 +321,14 @@ namespace TS4SimRipper
         {
             internal CASP[] casps;
             internal ulong[] colorShifts;
+            internal uint[] layerIds;
             internal string[] packages;
-            internal OutfitInfo(CASP[] casps, ulong[] colorShifts, string[] packageNames)
+            internal OutfitInfo(CASP[] casps, ulong[] colorShifts, string[] packageNames, uint[] layerIds)
             {
                 this.casps = casps;
                 this.colorShifts = colorShifts;
                 this.packages = packageNames;
+                this.layerIds = layerIds;
             }
         }
 
@@ -574,7 +576,9 @@ namespace TS4SimRipper
                 List<CASP> casps = new List<CASP>();
                 List<string> packNames = new List<string>();
                 List<ulong> colorShifts = new List<ulong>();
+                var layerIds = new List<uint>();
                 bool gotShifts = outfit.part_shifts != null && outfit.part_shifts.color_shift.Length == parts.ids.Length;
+                bool gotLayers = outfit.layer_ids != null && outfit.layer_ids.layer_id.Length == parts.ids.Length;
                 for (int i = 0; i < outfit.parts.ids.Length; i++)
                 {
                     ulong id = outfit.parts.ids[i];
@@ -586,8 +590,9 @@ namespace TS4SimRipper
                     casps.Add(casp);
                     packNames.Add(packname);
                     colorShifts.Add(gotShifts ? outfit.part_shifts.color_shift[i] : 0x4000000000000000UL);
+                    layerIds.Add(gotLayers ? outfit.layer_ids.layer_id[i]: 0);
                 }
-                currentOutfits.Add(new OutfitInfo(casps.ToArray(), colorShifts.ToArray(), packNames.ToArray()));
+                currentOutfits.Add(new OutfitInfo(casps.ToArray(), colorShifts.ToArray(), packNames.ToArray(), layerIds.ToArray()));
                 OutfitCategory category = (OutfitCategory)outfit.category;
                 if
                     (category == currentCategory) categoryCount++;
