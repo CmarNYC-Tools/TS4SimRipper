@@ -1,4 +1,4 @@
-/* TS4 SimRipper, a tool for creating custom content for The Sims 4,
+﻿/* TS4 SimRipper, a tool for creating custom content for The Sims 4,
    Copyright (C) 2014  C. Marinetti
 
    This program is free software: you can redistribute it and/or modify
@@ -607,6 +607,15 @@ namespace TS4SimRipper
                         }
                         if (gotGlass) glassStack.Add(new ImageStack(outfit[i].SortLayer, outfit[i].CompositionMethod, colorShifts[i], outfit[i].BodyType, outfit[i].HasMesh, texture, shadow, specular, bumpmap, emissionmap));
                    // }
+                }
+                if(tattooTracker?.body_type_tattoo_data?.Any()==true){
+                    var sl = 3000;
+                    foreach(var t in tattooTracker.body_type_tattoo_data){
+                        if(t.body_part_custom_texture >0){
+                            Bitmap texture = FetchCustomTattoo(new TGI(0xF8E1457A, 0x00800000, t.body_part_custom_texture), ref errorList);
+                            imageStack.Add(new ImageStack(++sl, 0, 0x4000000000000000, (BodyType)t.body_type, false, texture, null, null, null, null));
+                        }
+                    }
                 }
 
                 LogMe(log, "Processing outfit mesh regions");

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -64,6 +64,7 @@ namespace TS4SimRipper
 
         string startupErrors = "";
         string simDesc = "";
+        private TS4SaveGame.PersistableTattooTracker tattooTracker;
         string errorList = "";
         FileStream log;
 
@@ -1104,6 +1105,7 @@ namespace TS4SimRipper
             }
             simDesc = info + Environment.NewLine + morphInfo + Environment.NewLine;
 
+            this.tattooTracker = currentSim.attributes.tattoo_tracker;
             //  if (debug) errorList += "DisplaySim loaded info listing" + Environment.NewLine;
 
             GetCurrentModel();
