@@ -15,7 +15,8 @@
                 "build",
                 "${workspaceFolder}/src/TS4SimRipper.NET.csproj",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary",
+                "-f:net6.0-windows",
             ],
             "problemMatcher": "$msCompile"
         },
@@ -40,7 +41,8 @@
             "args": [
                 "publish",
                 "src/TS4SimRipper.NET.csproj",
-                "-c:Release"
+                "-c:Release",
+                "-f:net6.0-windows"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -49,14 +51,17 @@
             "command": "wine",
             "type": "process",
             "options": {
-                "cwd": "${workspaceFolder}/src/bin/Debug/net8.0-windows/win-x64/"
+                "cwd": "${workspaceFolder}/src/bin/Debug/net6.0-windows/win-x64/",
+                "env": {
+                    "WINEDEBUG":"-all"
+                }
             },
             "dependsOn":[
                 "buildn"
             ],
             "args":[
                 "TS4SimRipper.exe"
-            ]
+            ],
         }
     
     ]
