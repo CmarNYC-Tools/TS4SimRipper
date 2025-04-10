@@ -206,6 +206,9 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(20)]
         public global::System.Collections.Generic.List<UnitTraitData> unitTraits { get; } = new global::System.Collections.Generic.List<UnitTraitData>();
 
+        [global::ProtoBuf.ProtoMember(21)]
+        public uint[] dynamic_areas { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -591,6 +594,16 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(23)]
         public global::EA.Sims4.SimPronounList custom_pronoun { get; set; }
 
+        [global::ProtoBuf.ProtoMember(24)]
+        public ulong death_trait
+        {
+            get => __pbn__death_trait.GetValueOrDefault();
+            set => __pbn__death_trait = value;
+        }
+        public bool ShouldSerializedeath_trait() => __pbn__death_trait != null;
+        public void Resetdeath_trait() => __pbn__death_trait = null;
+        private ulong? __pbn__death_trait;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -961,6 +974,9 @@ namespace EA.Sims4.Network
             [global::ProtoBuf.ProtoMember(7)]
             public TrayRoomBlueprintMetadata ro_metadata { get; set; }
 
+            [global::ProtoBuf.ProtoMember(26)]
+            public TrayPartMetadata part_metadata { get; set; }
+
             [global::ProtoBuf.ProtoMember(3)]
             public bool is_hidden
             {
@@ -1201,7 +1217,7 @@ namespace EA.Sims4.Network
         public enum TrayMetadataVersion
         {
             v000 = 0,
-            currentVersion = 10500,
+            currentVersion = 11300,
         }
 
     }
@@ -1215,6 +1231,29 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(1)]
         public ulong[] item { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class TrayPartMetadata : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        public uint body_type { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        [global::System.ComponentModel.DefaultValue(2u)]
+        public uint num_thumbnails
+        {
+            get => __pbn__num_thumbnails ?? 2u;
+            set => __pbn__num_thumbnails = value;
+        }
+        public bool ShouldSerializenum_thumbnails() => __pbn__num_thumbnails != null;
+        public void Resetnum_thumbnails() => __pbn__num_thumbnails = null;
+        private uint? __pbn__num_thumbnails;
 
     }
 
@@ -1972,6 +2011,60 @@ namespace EA.Sims4.Network
         public bool ShouldSerializefavorites_nucleusid() => __pbn__favorites_nucleusid != null;
         public void Resetfavorites_nucleusid() => __pbn__favorites_nucleusid = null;
         private ulong? __pbn__favorites_nucleusid;
+
+        [global::ProtoBuf.ProtoMember(28)]
+        public ulong download_count_range_min
+        {
+            get => __pbn__download_count_range_min.GetValueOrDefault();
+            set => __pbn__download_count_range_min = value;
+        }
+        public bool ShouldSerializedownload_count_range_min() => __pbn__download_count_range_min != null;
+        public void Resetdownload_count_range_min() => __pbn__download_count_range_min = null;
+        private ulong? __pbn__download_count_range_min;
+
+        [global::ProtoBuf.ProtoMember(29)]
+        public ulong upload_time_range_start
+        {
+            get => __pbn__upload_time_range_start.GetValueOrDefault();
+            set => __pbn__upload_time_range_start = value;
+        }
+        public bool ShouldSerializeupload_time_range_start() => __pbn__upload_time_range_start != null;
+        public void Resetupload_time_range_start() => __pbn__upload_time_range_start = null;
+        private ulong? __pbn__upload_time_range_start;
+
+        [global::ProtoBuf.ProtoMember(30)]
+        public ulong upload_time_range_end
+        {
+            get => __pbn__upload_time_range_end.GetValueOrDefault();
+            set => __pbn__upload_time_range_end = value;
+        }
+        public bool ShouldSerializeupload_time_range_end() => __pbn__upload_time_range_end != null;
+        public void Resetupload_time_range_end() => __pbn__upload_time_range_end = null;
+        private ulong? __pbn__upload_time_range_end;
+
+        [global::ProtoBuf.ProtoMember(31)]
+        public global::System.Collections.Generic.List<Pack> exclusive_packs { get; } = new global::System.Collections.Generic.List<Pack>();
+
+        [global::ProtoBuf.ProtoMember(32)]
+        public uint body_type
+        {
+            get => __pbn__body_type.GetValueOrDefault();
+            set => __pbn__body_type = value;
+        }
+        public bool ShouldSerializebody_type() => __pbn__body_type != null;
+        public void Resetbody_type() => __pbn__body_type = null;
+        private uint? __pbn__body_type;
+
+        [global::ProtoBuf.ProtoMember(33)]
+        [global::System.ComponentModel.DefaultValue(0u)]
+        public uint compatible_item_version
+        {
+            get => __pbn__compatible_item_version ?? 0u;
+            set => __pbn__compatible_item_version = value;
+        }
+        public bool ShouldSerializecompatible_item_version() => __pbn__compatible_item_version != null;
+        public void Resetcompatible_item_version() => __pbn__compatible_item_version = null;
+        private uint? __pbn__compatible_item_version;
 
     }
 
@@ -3379,5 +3472,5 @@ namespace EA.Sims4.Network
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

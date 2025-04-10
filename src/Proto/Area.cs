@@ -173,6 +173,9 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(6)]
         public bool[] goals_that_show_progress { get; set; }
 
+        [global::ProtoBuf.ProtoMember(7)]
+        public bool[] goals_with_update_tooltip_in_special_cases { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -282,5 +285,5 @@ namespace EA.Sims4.Network
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

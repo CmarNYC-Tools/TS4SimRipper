@@ -564,6 +564,16 @@ namespace EA.Sims4.Network
         public void Reseteffect_speed_threshold() => __pbn__effect_speed_threshold = null;
         private float? __pbn__effect_speed_threshold;
 
+        [global::ProtoBuf.ProtoMember(15)]
+        public uint jaw_flap_override
+        {
+            get => __pbn__jaw_flap_override.GetValueOrDefault();
+            set => __pbn__jaw_flap_override = value;
+        }
+        public bool ShouldSerializejaw_flap_override() => __pbn__jaw_flap_override != null;
+        public void Resetjaw_flap_override() => __pbn__jaw_flap_override = null;
+        private uint? __pbn__jaw_flap_override;
+
         [global::ProtoBuf.ProtoContract()]
         public enum ProceduralControlType
         {
@@ -681,5 +691,5 @@ namespace EA.Sims4.Network
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

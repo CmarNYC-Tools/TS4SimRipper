@@ -42,6 +42,26 @@ namespace EA.Sims4.Network
         public void Resetcriteria_id() => __pbn__criteria_id = null;
         private uint? __pbn__criteria_id;
 
+        [global::ProtoBuf.ProtoMember(5)]
+        public bool required
+        {
+            get => __pbn__required.GetValueOrDefault();
+            set => __pbn__required = value;
+        }
+        public bool ShouldSerializerequired() => __pbn__required != null;
+        public void Resetrequired() => __pbn__required = null;
+        private bool? __pbn__required;
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public bool supervised
+        {
+            get => __pbn__supervised.GetValueOrDefault();
+            set => __pbn__supervised = value;
+        }
+        public bool ShouldSerializesupervised() => __pbn__supervised != null;
+        public void Resetsupervised() => __pbn__supervised = null;
+        private bool? __pbn__supervised;
+
         [global::ProtoBuf.ProtoContract()]
         public enum ClubCriteriaCategory
         {
@@ -53,6 +73,8 @@ namespace EA.Sims4.Network
             AGE = 5,
             CLUB_MEMBERSHIP = 6,
             FAME_RANK = 7,
+            CARE_SIM_TYPE_SUPERVISED = 8,
+            OCCULT = 9,
         }
 
     }
@@ -172,5 +194,5 @@ namespace EA.Sims4.Network
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

@@ -68,6 +68,9 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(12)]
         public IconInfo button_icon { get; set; }
 
+        [global::ProtoBuf.ProtoMember(13)]
+        public UiShowBuildBuyArgs show_build_buy_args { get; set; }
+
         [global::ProtoBuf.ProtoContract()]
         public enum UiDialogChoiceUiRequest
         {
@@ -105,7 +108,41 @@ namespace EA.Sims4.Network
             SHOW_FACTION_REP_PANEL = 31,
             SEND_UI_MESSAGE = 32,
             PIVOTAL_MOMENT_ASK_LATER = 33,
+            SHOW_GHOST_POWERS_PERKS_PANEL = 34,
+            SHOW_SMALL_BUSINESS_PERKS_PANEL = 35,
+            SHOW_SMALL_BUSINESS_PANEL = 36,
+            SHOW_BUILD_BUY_WITH_FILTER = 37,
+            SHOW_SMALL_BUSINESS_CONFIGURATOR = 38,
         }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UiShowBuildBuyArgs : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint category_tag
+        {
+            get => __pbn__category_tag.GetValueOrDefault();
+            set => __pbn__category_tag = value;
+        }
+        public bool ShouldSerializecategory_tag() => __pbn__category_tag != null;
+        public void Resetcategory_tag() => __pbn__category_tag = null;
+        private uint? __pbn__category_tag;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint pack_id
+        {
+            get => __pbn__pack_id.GetValueOrDefault();
+            set => __pbn__pack_id = value;
+        }
+        public bool ShouldSerializepack_id() => __pbn__pack_id != null;
+        public void Resetpack_id() => __pbn__pack_id = null;
+        private uint? __pbn__pack_id;
 
     }
 
@@ -599,6 +636,26 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(30)]
         public LocalizedString subtitle { get; set; }
 
+        [global::ProtoBuf.ProtoMember(31)]
+        public IconInfo mask_alert_icon { get; set; }
+
+        [global::ProtoBuf.ProtoMember(32)]
+        public LocalizedString mask_alert_sim_name { get; set; }
+
+        [global::ProtoBuf.ProtoMember(33)]
+        public IconInfo mask_header_icon { get; set; }
+
+        [global::ProtoBuf.ProtoMember(34)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string validation_command
+        {
+            get => __pbn__validation_command ?? "";
+            set => __pbn__validation_command = value;
+        }
+        public bool ShouldSerializevalidation_command() => __pbn__validation_command != null;
+        public void Resetvalidation_command() => __pbn__validation_command = null;
+        private string __pbn__validation_command;
+
         [global::ProtoBuf.ProtoContract()]
         public enum Type
         {
@@ -613,6 +670,8 @@ namespace EA.Sims4.Network
             CUSTOMIZE_OBJECT_MULTI_PICKER = 9,
             REVEAL_SEQUENCE = 10,
             CRAFTING_JEWELRY = 11,
+            DEATH_OPTIONS = 12,
+            FAMILY_RECIPE = 13,
         }
 
         [global::ProtoBuf.ProtoContract()]
@@ -655,6 +714,8 @@ namespace EA.Sims4.Network
             BG_TRENDI = 13,
             BG_GUIDANCE = 14,
             BG_FOOD_RECIPE_PICKER_ONLY = 15,
+            BG_DEATH = 16,
+            BG_TAROT = 17,
         }
 
     }
@@ -1138,6 +1199,26 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(27)]
         public global::System.Collections.Generic.List<string> food_restriction_ingredients { get; } = new global::System.Collections.Generic.List<string>();
 
+        [global::ProtoBuf.ProtoMember(28)]
+        public ulong recipe_id
+        {
+            get => __pbn__recipe_id.GetValueOrDefault();
+            set => __pbn__recipe_id = value;
+        }
+        public bool ShouldSerializerecipe_id() => __pbn__recipe_id != null;
+        public void Resetrecipe_id() => __pbn__recipe_id = null;
+        private ulong? __pbn__recipe_id;
+
+        [global::ProtoBuf.ProtoMember(29)]
+        public ulong buff_id
+        {
+            get => __pbn__buff_id.GetValueOrDefault();
+            set => __pbn__buff_id = value;
+        }
+        public bool ShouldSerializebuff_id() => __pbn__buff_id != null;
+        public void Resetbuff_id() => __pbn__buff_id = null;
+        private ulong? __pbn__buff_id;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1197,6 +1278,16 @@ namespace EA.Sims4.Network
         public bool ShouldSerializesim_location() => __pbn__sim_location != null;
         public void Resetsim_location() => __pbn__sim_location = null;
         private string __pbn__sim_location;
+
+        [global::ProtoBuf.ProtoMember(8)]
+        public ulong household_id
+        {
+            get => __pbn__household_id.GetValueOrDefault();
+            set => __pbn__household_id = value;
+        }
+        public bool ShouldSerializehousehold_id() => __pbn__household_id != null;
+        public void Resethousehold_id() => __pbn__household_id = null;
+        private ulong? __pbn__household_id;
 
     }
 
@@ -1314,6 +1405,60 @@ namespace EA.Sims4.Network
         public bool ShouldSerializediscounted_cost() => __pbn__discounted_cost != null;
         public void Resetdiscounted_cost() => __pbn__discounted_cost = null;
         private uint? __pbn__discounted_cost;
+
+        [global::ProtoBuf.ProtoMember(12)]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool use_cas_catalog_product_thumbnails
+        {
+            get => __pbn__use_cas_catalog_product_thumbnails ?? false;
+            set => __pbn__use_cas_catalog_product_thumbnails = value;
+        }
+        public bool ShouldSerializeuse_cas_catalog_product_thumbnails() => __pbn__use_cas_catalog_product_thumbnails != null;
+        public void Resetuse_cas_catalog_product_thumbnails() => __pbn__use_cas_catalog_product_thumbnails = null;
+        private bool? __pbn__use_cas_catalog_product_thumbnails;
+
+        [global::ProtoBuf.ProtoMember(13)]
+        public uint cas_catalog_gender
+        {
+            get => __pbn__cas_catalog_gender.GetValueOrDefault();
+            set => __pbn__cas_catalog_gender = value;
+        }
+        public bool ShouldSerializecas_catalog_gender() => __pbn__cas_catalog_gender != null;
+        public void Resetcas_catalog_gender() => __pbn__cas_catalog_gender = null;
+        private uint? __pbn__cas_catalog_gender;
+
+        [global::ProtoBuf.ProtoMember(14)]
+        public global::System.Collections.Generic.List<ResourceKey> slot_types { get; } = new global::System.Collections.Generic.List<ResourceKey>();
+
+        [global::ProtoBuf.ProtoMember(15)]
+        public ulong owner_sim_id
+        {
+            get => __pbn__owner_sim_id.GetValueOrDefault();
+            set => __pbn__owner_sim_id = value;
+        }
+        public bool ShouldSerializeowner_sim_id() => __pbn__owner_sim_id != null;
+        public void Resetowner_sim_id() => __pbn__owner_sim_id = null;
+        private ulong? __pbn__owner_sim_id;
+
+        [global::ProtoBuf.ProtoMember(16)]
+        public bool is_new
+        {
+            get => __pbn__is_new.GetValueOrDefault();
+            set => __pbn__is_new = value;
+        }
+        public bool ShouldSerializeis_new() => __pbn__is_new != null;
+        public void Resetis_new() => __pbn__is_new = null;
+        private bool? __pbn__is_new;
+
+        [global::ProtoBuf.ProtoMember(17)]
+        public ulong target_sim_id
+        {
+            get => __pbn__target_sim_id.GetValueOrDefault();
+            set => __pbn__target_sim_id = value;
+        }
+        public bool ShouldSerializetarget_sim_id() => __pbn__target_sim_id != null;
+        public void Resettarget_sim_id() => __pbn__target_sim_id = null;
+        private ulong? __pbn__target_sim_id;
 
     }
 
@@ -1660,6 +1805,9 @@ namespace EA.Sims4.Network
         public bool ShouldSerializedisplay_filter() => __pbn__display_filter != null;
         public void Resetdisplay_filter() => __pbn__display_filter = null;
         private bool? __pbn__display_filter;
+
+        [global::ProtoBuf.ProtoMember(15)]
+        public global::System.Collections.Generic.List<RelationshipUpdate> override_owner_relationships { get; } = new global::System.Collections.Generic.List<RelationshipUpdate>();
 
     }
 
@@ -2127,6 +2275,22 @@ namespace EA.Sims4.Network
         public void Resetforce_done_button() => __pbn__force_done_button = null;
         private bool? __pbn__force_done_button;
 
+        [global::ProtoBuf.ProtoMember(30)]
+        public bool disable_non_selectable_items
+        {
+            get => __pbn__disable_non_selectable_items.GetValueOrDefault();
+            set => __pbn__disable_non_selectable_items = value;
+        }
+        public bool ShouldSerializedisable_non_selectable_items() => __pbn__disable_non_selectable_items != null;
+        public void Resetdisable_non_selectable_items() => __pbn__disable_non_selectable_items = null;
+        private bool? __pbn__disable_non_selectable_items;
+
+        [global::ProtoBuf.ProtoMember(31)]
+        public global::System.Collections.Generic.List<SlotTypesMaxSelectable> slot_types_max_selectable { get; } = new global::System.Collections.Generic.List<SlotTypesMaxSelectable>();
+
+        [global::ProtoBuf.ProtoMember(32)]
+        public LocalizedString max_selectable_subtitle { get; set; }
+
         [global::ProtoBuf.ProtoContract()]
         public enum ObjectPickerType
         {
@@ -2155,6 +2319,7 @@ namespace EA.Sims4.Network
             FASHION_PURCHASE = 23,
             RELATIONSHIP = 24,
             OBJECT_EXPANDED_INFO = 25,
+            OBJECT_CAS_ICON = 26,
         }
 
         [global::ProtoBuf.ProtoContract()]
@@ -2164,6 +2329,28 @@ namespace EA.Sims4.Network
             NO_DESCRIPTION = 2,
             FULL_DESCRIPTION = 3,
         }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SlotTypesMaxSelectable : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public ResourceKey slot_type_key { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint max_selectable
+        {
+            get => __pbn__max_selectable.GetValueOrDefault();
+            set => __pbn__max_selectable = value;
+        }
+        public bool ShouldSerializemax_selectable() => __pbn__max_selectable != null;
+        public void Resetmax_selectable() => __pbn__max_selectable = null;
+        private uint? __pbn__max_selectable;
 
     }
 
@@ -2216,6 +2403,16 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeremove_empty_filter_categories() => __pbn__remove_empty_filter_categories != null;
         public void Resetremove_empty_filter_categories() => __pbn__remove_empty_filter_categories = null;
         private bool? __pbn__remove_empty_filter_categories;
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public bool use_sim_inventory_filter_categories
+        {
+            get => __pbn__use_sim_inventory_filter_categories.GetValueOrDefault();
+            set => __pbn__use_sim_inventory_filter_categories = value;
+        }
+        public bool ShouldSerializeuse_sim_inventory_filter_categories() => __pbn__use_sim_inventory_filter_categories != null;
+        public void Resetuse_sim_inventory_filter_categories() => __pbn__use_sim_inventory_filter_categories = null;
+        private bool? __pbn__use_sim_inventory_filter_categories;
 
     }
 
@@ -3267,7 +3464,19 @@ namespace EA.Sims4.Network
 
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class PickerValidationResponse : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        public bool is_valid { get; set; }
+
+    }
+
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

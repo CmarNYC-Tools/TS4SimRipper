@@ -150,6 +150,31 @@ namespace EA.Sims4.Network
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class UnfinishedBusinessAspirationUpdate : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public ulong sim_id
+        {
+            get => __pbn__sim_id.GetValueOrDefault();
+            set => __pbn__sim_id = value;
+        }
+        public bool ShouldSerializesim_id() => __pbn__sim_id != null;
+        public void Resetsim_id() => __pbn__sim_id = null;
+        private ulong? __pbn__sim_id;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public ulong[] objectives { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public ulong[] objectives_completed { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class GoalsStatusUpdate : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -190,6 +215,9 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(7)]
         public bool[] goals_that_show_progress { get; set; }
+
+        [global::ProtoBuf.ProtoMember(8)]
+        public bool[] goals_with_update_tooltip_in_special_cases { get; set; }
 
     }
 
@@ -2579,6 +2607,17 @@ namespace EA.Sims4.Network
         public void Resetage_completed() => __pbn__age_completed = null;
         private uint? __pbn__age_completed;
 
+        [global::ProtoBuf.ProtoMember(16)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string unlocked_small_business_name
+        {
+            get => __pbn__unlocked_small_business_name ?? "";
+            set => __pbn__unlocked_small_business_name = value;
+        }
+        public bool ShouldSerializeunlocked_small_business_name() => __pbn__unlocked_small_business_name != null;
+        public void Resetunlocked_small_business_name() => __pbn__unlocked_small_business_name = null;
+        private string __pbn__unlocked_small_business_name;
+
         [global::ProtoBuf.ProtoContract()]
         public enum MilestoneState
         {
@@ -2690,5 +2729,5 @@ namespace EA.Sims4.Network
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

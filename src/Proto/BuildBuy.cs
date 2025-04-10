@@ -370,6 +370,17 @@ namespace EA.Sims4.Network
         public void Resetkeep_venue_type() => __pbn__keep_venue_type = null;
         private bool? __pbn__keep_venue_type;
 
+        [global::ProtoBuf.ProtoMember(23)]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool clear_dynamic_areas
+        {
+            get => __pbn__clear_dynamic_areas ?? false;
+            set => __pbn__clear_dynamic_areas = value;
+        }
+        public bool ShouldSerializeclear_dynamic_areas() => __pbn__clear_dynamic_areas != null;
+        public void Resetclear_dynamic_areas() => __pbn__clear_dynamic_areas = null;
+        private bool? __pbn__clear_dynamic_areas;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -514,5 +525,5 @@ namespace EA.Sims4.Network
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

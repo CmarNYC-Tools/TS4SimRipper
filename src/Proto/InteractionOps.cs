@@ -350,6 +350,16 @@ namespace EA.Sims4.Network
         public void Resetis_in_game_evict() => __pbn__is_in_game_evict = null;
         private bool? __pbn__is_in_game_evict;
 
+        [global::ProtoBuf.ProtoMember(3)]
+        public ulong source_zone_id
+        {
+            get => __pbn__source_zone_id.GetValueOrDefault();
+            set => __pbn__source_zone_id = value;
+        }
+        public bool ShouldSerializesource_zone_id() => __pbn__source_zone_id != null;
+        public void Resetsource_zone_id() => __pbn__source_zone_id = null;
+        private ulong? __pbn__source_zone_id;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -605,5 +615,5 @@ namespace EA.Sims4.Network
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

@@ -28,6 +28,9 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(4)]
         public global::EA.Sims4.Persistence.FeedbackContext errors { get; set; }
 
+        [global::ProtoBuf.ProtoMember(5)]
+        public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.ZoneObjectDataScratchPair> scratch_path { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.ZoneObjectDataScratchPair>();
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -75,5 +78,5 @@ namespace EA.Sims4.Network
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

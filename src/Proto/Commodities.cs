@@ -175,6 +175,9 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(12)]
         public LocalizedString archetype_name { get; set; }
 
+        [global::ProtoBuf.ProtoMember(13)]
+        public LocalizedString track_name { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -359,6 +362,25 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(28)]
         public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.ConfrontedSimSecret> known_confronted_secrets { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.ConfrontedSimSecret>();
 
+        [global::ProtoBuf.ProtoMember(29)]
+        public RelationshipLabelDataUpdate relationship_label_data { get; set; }
+
+        [global::ProtoBuf.ProtoMember(30)]
+        public ulong[] known_rel_track_ids { get; set; }
+
+        [global::ProtoBuf.ProtoMember(31)]
+        public uint[] known_relationship_expectations_ids { get; set; }
+
+        [global::ProtoBuf.ProtoMember(32)]
+        public bool hidden
+        {
+            get => __pbn__hidden.GetValueOrDefault();
+            set => __pbn__hidden = value;
+        }
+        public bool ShouldSerializehidden() => __pbn__hidden != null;
+        public void Resethidden() => __pbn__hidden = null;
+        private bool? __pbn__hidden;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -457,6 +479,29 @@ namespace EA.Sims4.Network
             DENIED = 3,
             PENDING_RECIEVER = 4,
         }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class RelationshipLabelDataUpdate : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string label
+        {
+            get => __pbn__label ?? "";
+            set => __pbn__label = value;
+        }
+        public bool ShouldSerializelabel() => __pbn__label != null;
+        public void Resetlabel() => __pbn__label = null;
+        private string __pbn__label;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public ResourceKey icon { get; set; }
 
     }
 
@@ -601,6 +646,18 @@ namespace EA.Sims4.Network
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class CommodityProgressUpdateList : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<CommodityProgressUpdate> commodities { get; } = new global::System.Collections.Generic.List<CommodityProgressUpdate>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class CommodityListUpdate : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -619,6 +676,19 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(2)]
         public global::System.Collections.Generic.List<CommodityProgressUpdate> commodities { get; } = new global::System.Collections.Generic.List<CommodityProgressUpdate>();
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint motive_commodity_index
+        {
+            get => __pbn__motive_commodity_index.GetValueOrDefault();
+            set => __pbn__motive_commodity_index = value;
+        }
+        public bool ShouldSerializemotive_commodity_index() => __pbn__motive_commodity_index != null;
+        public void Resetmotive_commodity_index() => __pbn__motive_commodity_index = null;
+        private uint? __pbn__motive_commodity_index;
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public global::System.Collections.Generic.List<CommodityProgressUpdateList> commodity_lists { get; } = new global::System.Collections.Generic.List<CommodityProgressUpdateList>();
 
     }
 
@@ -872,6 +942,46 @@ namespace EA.Sims4.Network
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class CooldownVisualEffectToggle : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public ulong sim_id
+        {
+            get => __pbn__sim_id.GetValueOrDefault();
+            set => __pbn__sim_id = value;
+        }
+        public bool ShouldSerializesim_id() => __pbn__sim_id != null;
+        public void Resetsim_id() => __pbn__sim_id = null;
+        private ulong? __pbn__sim_id;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public bool cooldown_visual_effect_active
+        {
+            get => __pbn__cooldown_visual_effect_active.GetValueOrDefault();
+            set => __pbn__cooldown_visual_effect_active = value;
+        }
+        public bool ShouldSerializecooldown_visual_effect_active() => __pbn__cooldown_visual_effect_active != null;
+        public void Resetcooldown_visual_effect_active() => __pbn__cooldown_visual_effect_active = null;
+        private bool? __pbn__cooldown_visual_effect_active;
+
+        [global::ProtoBuf.ProtoMember(3)]
+        [global::System.ComponentModel.DefaultValue(1f)]
+        public float edge_color_multiplier
+        {
+            get => __pbn__edge_color_multiplier ?? 1f;
+            set => __pbn__edge_color_multiplier = value;
+        }
+        public bool ShouldSerializeedge_color_multiplier() => __pbn__edge_color_multiplier != null;
+        public void Resetedge_color_multiplier() => __pbn__edge_color_multiplier = null;
+        private float? __pbn__edge_color_multiplier;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public enum SentimentSignType
     {
         SIGN_INVALID = 0,
@@ -896,5 +1006,5 @@ namespace EA.Sims4.Network
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

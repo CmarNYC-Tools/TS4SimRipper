@@ -46,6 +46,18 @@ namespace EA.Sims4.Persistence
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class LayerIdsList : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint[] layer_id { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class OutfitData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -130,6 +142,9 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(14)]
         public ObjectIdsList object_ids { get; set; }
 
+        [global::ProtoBuf.ProtoMember(15)]
+        public LayerIdsList layer_ids { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -178,6 +193,17 @@ namespace EA.Sims4.Persistence
         public bool ShouldSerializeobject_id() => __pbn__object_id != null;
         public void Resetobject_id() => __pbn__object_id = null;
         private ulong? __pbn__object_id;
+
+        [global::ProtoBuf.ProtoMember(5)]
+        [global::System.ComponentModel.DefaultValue(0u)]
+        public uint layer_id
+        {
+            get => __pbn__layer_id ?? 0u;
+            set => __pbn__layer_id = value;
+        }
+        public bool ShouldSerializelayer_id() => __pbn__layer_id != null;
+        public void Resetlayer_id() => __pbn__layer_id = null;
+        private uint? __pbn__layer_id;
 
     }
 
@@ -290,7 +316,104 @@ namespace EA.Sims4.Persistence
 
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SimPartCustomTattooData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
+        public uint body_type { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, IsRequired = true)]
+        public ulong texture_id { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SimPartCreatorData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint body_type
+        {
+            get => __pbn__body_type.GetValueOrDefault();
+            set => __pbn__body_type = value;
+        }
+        public bool ShouldSerializebody_type() => __pbn__body_type != null;
+        public void Resetbody_type() => __pbn__body_type = null;
+        private uint? __pbn__body_type;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public byte[] creator_uuid
+        {
+            get => __pbn__creator_uuid;
+            set => __pbn__creator_uuid = value;
+        }
+        public bool ShouldSerializecreator_uuid() => __pbn__creator_uuid != null;
+        public void Resetcreator_uuid() => __pbn__creator_uuid = null;
+        private byte[] __pbn__creator_uuid;
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public ulong creator_id
+        {
+            get => __pbn__creator_id.GetValueOrDefault();
+            set => __pbn__creator_id = value;
+        }
+        public bool ShouldSerializecreator_id() => __pbn__creator_id != null;
+        public void Resetcreator_id() => __pbn__creator_id = null;
+        private ulong? __pbn__creator_id;
+
+        [global::ProtoBuf.ProtoMember(4)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string creator_name
+        {
+            get => __pbn__creator_name ?? "";
+            set => __pbn__creator_name = value;
+        }
+        public bool ShouldSerializecreator_name() => __pbn__creator_name != null;
+        public void Resetcreator_name() => __pbn__creator_name = null;
+        private string __pbn__creator_name;
+
+        [global::ProtoBuf.ProtoMember(5)]
+        [global::System.ComponentModel.DefaultValue(global::EA.Sims4.Network.ExchangeItemPlatform.EXCHANGE_PLATFORM_UNKNOWN)]
+        public global::EA.Sims4.Network.ExchangeItemPlatform creator_platform
+        {
+            get => __pbn__creator_platform ?? global::EA.Sims4.Network.ExchangeItemPlatform.EXCHANGE_PLATFORM_UNKNOWN;
+            set => __pbn__creator_platform = value;
+        }
+        public bool ShouldSerializecreator_platform() => __pbn__creator_platform != null;
+        public void Resetcreator_platform() => __pbn__creator_platform = null;
+        private global::EA.Sims4.Network.ExchangeItemPlatform? __pbn__creator_platform;
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public ulong creator_platform_id
+        {
+            get => __pbn__creator_platform_id.GetValueOrDefault();
+            set => __pbn__creator_platform_id = value;
+        }
+        public bool ShouldSerializecreator_platform_id() => __pbn__creator_platform_id != null;
+        public void Resetcreator_platform_id() => __pbn__creator_platform_id = null;
+        private ulong? __pbn__creator_platform_id;
+
+        [global::ProtoBuf.ProtoMember(7)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string creator_platform_name
+        {
+            get => __pbn__creator_platform_name ?? "";
+            set => __pbn__creator_platform_name = value;
+        }
+        public bool ShouldSerializecreator_platform_name() => __pbn__creator_platform_name != null;
+        public void Resetcreator_platform_name() => __pbn__creator_platform_name = null;
+        private string __pbn__creator_platform_name;
+
+    }
+
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

@@ -361,6 +361,16 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(8)]
         public ResourceKey cas_edit_no_sim_icon { get; set; }
 
+        [global::ProtoBuf.ProtoMember(9)]
+        public bool visible_on_role_page
+        {
+            get => __pbn__visible_on_role_page.GetValueOrDefault();
+            set => __pbn__visible_on_role_page = value;
+        }
+        public bool ShouldSerializevisible_on_role_page() => __pbn__visible_on_role_page != null;
+        public void Resetvisible_on_role_page() => __pbn__visible_on_role_page = null;
+        private bool? __pbn__visible_on_role_page;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -393,6 +403,74 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(8)]
         public SituationStyleData style_data { get; set; }
+
+        [global::ProtoBuf.ProtoMember(9)]
+        public uint minimum_activities
+        {
+            get => __pbn__minimum_activities.GetValueOrDefault();
+            set => __pbn__minimum_activities = value;
+        }
+        public bool ShouldSerializeminimum_activities() => __pbn__minimum_activities != null;
+        public void Resetminimum_activities() => __pbn__minimum_activities = null;
+        private uint? __pbn__minimum_activities;
+
+        [global::ProtoBuf.ProtoMember(10)]
+        public LocalizedString activities_disabled_tooltip { get; set; }
+
+        [global::ProtoBuf.ProtoMember(11)]
+        public global::System.Collections.Generic.List<LocalizedString> challenge_reward_override { get; } = new global::System.Collections.Generic.List<LocalizedString>();
+
+        [global::ProtoBuf.ProtoMember(12)]
+        public bool activity_goal_situation
+        {
+            get => __pbn__activity_goal_situation.GetValueOrDefault();
+            set => __pbn__activity_goal_situation = value;
+        }
+        public bool ShouldSerializeactivity_goal_situation() => __pbn__activity_goal_situation != null;
+        public void Resetactivity_goal_situation() => __pbn__activity_goal_situation = null;
+        private bool? __pbn__activity_goal_situation;
+
+        [global::ProtoBuf.ProtoMember(13)]
+        public ulong[] randomizable_activity_ids { get; set; }
+
+        [global::ProtoBuf.ProtoMember(14)]
+        public uint num_randomized
+        {
+            get => __pbn__num_randomized.GetValueOrDefault();
+            set => __pbn__num_randomized = value;
+        }
+        public bool ShouldSerializenum_randomized() => __pbn__num_randomized != null;
+        public void Resetnum_randomized() => __pbn__num_randomized = null;
+        private uint? __pbn__num_randomized;
+
+        [global::ProtoBuf.ProtoMember(15)]
+        public ulong[] unavailable_activity_ids { get; set; }
+
+        [global::ProtoBuf.ProtoMember(16)]
+        public uint jobs_per_row
+        {
+            get => __pbn__jobs_per_row.GetValueOrDefault();
+            set => __pbn__jobs_per_row = value;
+        }
+        public bool ShouldSerializejobs_per_row() => __pbn__jobs_per_row != null;
+        public void Resetjobs_per_row() => __pbn__jobs_per_row = null;
+        private uint? __pbn__jobs_per_row;
+
+        [global::ProtoBuf.ProtoMember(17)]
+        public uint[] job_cell_padding { get; set; }
+
+        [global::ProtoBuf.ProtoMember(18)]
+        public ulong[] role_updates_activity_preferences { get; set; }
+
+        [global::ProtoBuf.ProtoMember(19)]
+        public ulong sim_filter_requesting_sim_override
+        {
+            get => __pbn__sim_filter_requesting_sim_override.GetValueOrDefault();
+            set => __pbn__sim_filter_requesting_sim_override = value;
+        }
+        public bool ShouldSerializesim_filter_requesting_sim_override() => __pbn__sim_filter_requesting_sim_override != null;
+        public void Resetsim_filter_requesting_sim_override() => __pbn__sim_filter_requesting_sim_override = null;
+        private ulong? __pbn__sim_filter_requesting_sim_override;
 
     }
 
@@ -441,6 +519,9 @@ namespace EA.Sims4.Network
         public void Resetis_guest() => __pbn__is_guest = null;
         private bool? __pbn__is_guest;
 
+        [global::ProtoBuf.ProtoMember(9)]
+        public ResourceKey border_image { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -473,6 +554,24 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(3)]
         public ulong[] job_resource_ids { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SituationPreferredActivities : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public ulong[] activities { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public ResourceKey icon { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public LocalizedString footer { get; set; }
 
     }
 
@@ -515,6 +614,19 @@ namespace EA.Sims4.Network
         public bool ShouldSerializecareer_track_id() => __pbn__career_track_id != null;
         public void Resetcareer_track_id() => __pbn__career_track_id = null;
         private ulong? __pbn__career_track_id;
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public bool cell_disabled
+        {
+            get => __pbn__cell_disabled.GetValueOrDefault();
+            set => __pbn__cell_disabled = value;
+        }
+        public bool ShouldSerializecell_disabled() => __pbn__cell_disabled != null;
+        public void Resetcell_disabled() => __pbn__cell_disabled = null;
+        private bool? __pbn__cell_disabled;
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public LocalizedString cell_disabled_tooltip { get; set; }
 
     }
 
@@ -871,6 +983,39 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(30)]
         public LocalizedString cancel_tooltip_override { get; set; }
+
+        [global::ProtoBuf.ProtoMember(31)]
+        public ulong live_event_id
+        {
+            get => __pbn__live_event_id.GetValueOrDefault();
+            set => __pbn__live_event_id = value;
+        }
+        public bool ShouldSerializelive_event_id() => __pbn__live_event_id != null;
+        public void Resetlive_event_id() => __pbn__live_event_id = null;
+        private ulong? __pbn__live_event_id;
+
+        [global::ProtoBuf.ProtoMember(32)]
+        public uint pivotal_moment_background_style
+        {
+            get => __pbn__pivotal_moment_background_style.GetValueOrDefault();
+            set => __pbn__pivotal_moment_background_style = value;
+        }
+        public bool ShouldSerializepivotal_moment_background_style() => __pbn__pivotal_moment_background_style != null;
+        public void Resetpivotal_moment_background_style() => __pbn__pivotal_moment_background_style = null;
+        private uint? __pbn__pivotal_moment_background_style;
+
+        [global::ProtoBuf.ProtoMember(33)]
+        public LocalizedString situation_display_description { get; set; }
+
+        [global::ProtoBuf.ProtoMember(34)]
+        public ulong tutorial_id
+        {
+            get => __pbn__tutorial_id.GetValueOrDefault();
+            set => __pbn__tutorial_id = value;
+        }
+        public bool ShouldSerializetutorial_id() => __pbn__tutorial_id != null;
+        public void Resettutorial_id() => __pbn__tutorial_id = null;
+        private ulong? __pbn__tutorial_id;
 
     }
 
@@ -1360,6 +1505,16 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(7)]
         public LocalizedString reward_1_tooltip { get; set; }
 
+        [global::ProtoBuf.ProtoMember(8)]
+        public uint situation_display_style
+        {
+            get => __pbn__situation_display_style.GetValueOrDefault();
+            set => __pbn__situation_display_style = value;
+        }
+        public bool ShouldSerializesituation_display_style() => __pbn__situation_display_style != null;
+        public void Resetsituation_display_style() => __pbn__situation_display_style = null;
+        private uint? __pbn__situation_display_style;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1480,7 +1635,46 @@ namespace EA.Sims4.Network
 
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class QuestGoalUpdate : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public ulong live_event_id
+        {
+            get => __pbn__live_event_id.GetValueOrDefault();
+            set => __pbn__live_event_id = value;
+        }
+        public bool ShouldSerializelive_event_id() => __pbn__live_event_id != null;
+        public void Resetlive_event_id() => __pbn__live_event_id = null;
+        private ulong? __pbn__live_event_id;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public ulong quest_id
+        {
+            get => __pbn__quest_id.GetValueOrDefault();
+            set => __pbn__quest_id = value;
+        }
+        public bool ShouldSerializequest_id() => __pbn__quest_id != null;
+        public void Resetquest_id() => __pbn__quest_id = null;
+        private ulong? __pbn__quest_id;
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public ulong situation_goal_id
+        {
+            get => __pbn__situation_goal_id.GetValueOrDefault();
+            set => __pbn__situation_goal_id = value;
+        }
+        public bool ShouldSerializesituation_goal_id() => __pbn__situation_goal_id != null;
+        public void Resetsituation_goal_id() => __pbn__situation_goal_id = null;
+        private ulong? __pbn__situation_goal_id;
+
+    }
+
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

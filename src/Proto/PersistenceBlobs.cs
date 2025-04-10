@@ -25,6 +25,12 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(3)]
         public global::System.Collections.Generic.List<Modifier> body_modifiers { get; } = new global::System.Collections.Generic.List<Modifier>();
 
+        [global::ProtoBuf.ProtoMember(4)]
+        public global::System.Collections.Generic.List<Modifier> aged_face_modifiers { get; } = new global::System.Collections.Generic.List<Modifier>();
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public global::System.Collections.Generic.List<Modifier> aged_body_modifiers { get; } = new global::System.Collections.Generic.List<Modifier>();
+
         [global::ProtoBuf.ProtoContract()]
         public partial class Modifier : global::ProtoBuf.IExtensible
         {
@@ -58,5 +64,5 @@ namespace EA.Sims4.Persistence
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

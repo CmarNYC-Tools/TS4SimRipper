@@ -83,6 +83,16 @@ namespace EA.Sims4.Network
         public void Resetgender_flags() => __pbn__gender_flags = null;
         private GenderFlags? __pbn__gender_flags;
 
+        [global::ProtoBuf.ProtoMember(37)]
+        public uint age_flags
+        {
+            get => __pbn__age_flags.GetValueOrDefault();
+            set => __pbn__age_flags = value;
+        }
+        public bool ShouldSerializeage_flags() => __pbn__age_flags != null;
+        public void Resetage_flags() => __pbn__age_flags = null;
+        private uint? __pbn__age_flags;
+
         [global::ProtoBuf.ProtoMember(7)]
         public ulong sim_id
         {
@@ -432,6 +442,16 @@ namespace EA.Sims4.Network
             public void Resetpacked_pronouns() => __pbn__packed_pronouns = null;
             private string __pbn__packed_pronouns;
 
+            [global::ProtoBuf.ProtoMember(8)]
+            public uint age_flags
+            {
+                get => __pbn__age_flags.GetValueOrDefault();
+                set => __pbn__age_flags = value;
+            }
+            public bool ShouldSerializeage_flags() => __pbn__age_flags != null;
+            public void Resetage_flags() => __pbn__age_flags = null;
+            private uint? __pbn__age_flags;
+
         }
 
         [global::ProtoBuf.ProtoContract()]
@@ -567,5 +587,5 @@ namespace EA.Sims4.Network
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

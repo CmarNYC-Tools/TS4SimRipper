@@ -93,12 +93,35 @@ namespace EA.Sims4.Network
         public void Resetentry_type() => __pbn__entry_type = null;
         private EntryType? __pbn__entry_type;
 
+        [global::ProtoBuf.ProtoMember(4)]
+        public LocalizedString entry_subtitle { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public LocalizedString entry_bucks { get; set; }
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public LocalizedString tooltip { get; set; }
+
+        [global::ProtoBuf.ProtoMember(7)]
+        public bool is_locked
+        {
+            get => __pbn__is_locked.GetValueOrDefault();
+            set => __pbn__is_locked = value;
+        }
+        public bool ShouldSerializeis_locked() => __pbn__is_locked != null;
+        public void Resetis_locked() => __pbn__is_locked = null;
+        private bool? __pbn__is_locked;
+
         [global::ProtoBuf.ProtoContract()]
         public enum EntryType
         {
             NORMAL = 0,
             TOTAL = 1,
             SUB_TOTAL = 2,
+            NORMAL_WITH_BEVEL = 3,
+            NORMAL_WITH_SUBTITLE = 4,
+            TOTAL_WITH_BUCKS = 5,
+            CUSTOM_BACKGROUND_ITEM = 6,
         }
 
     }
@@ -345,6 +368,55 @@ namespace EA.Sims4.Network
         public bool ShouldSerializehouse_description_id() => __pbn__house_description_id != null;
         public void Resethouse_description_id() => __pbn__house_description_id = null;
         private ulong? __pbn__house_description_id;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SmallBusinessDataUpdate : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong sim_id
+        {
+            get => __pbn__sim_id.GetValueOrDefault();
+            set => __pbn__sim_id = value;
+        }
+        public bool ShouldSerializesim_id() => __pbn__sim_id != null;
+        public void Resetsim_id() => __pbn__sim_id = null;
+        private ulong? __pbn__sim_id;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string description
+        {
+            get => __pbn__description ?? "";
+            set => __pbn__description = value;
+        }
+        public bool ShouldSerializedescription() => __pbn__description != null;
+        public void Resetdescription() => __pbn__description = null;
+        private string __pbn__description;
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public global::System.Collections.Generic.List<ClubConductRule> customer_rules { get; } = new global::System.Collections.Generic.List<ClubConductRule>();
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public global::System.Collections.Generic.List<ClubCriteria> attendance_criteria { get; } = new global::System.Collections.Generic.List<ClubCriteria>();
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public uint attendance_sale_mode
+        {
+            get => __pbn__attendance_sale_mode.GetValueOrDefault();
+            set => __pbn__attendance_sale_mode = value;
+        }
+        public bool ShouldSerializeattendance_sale_mode() => __pbn__attendance_sale_mode != null;
+        public void Resetattendance_sale_mode() => __pbn__attendance_sale_mode = null;
+        private uint? __pbn__attendance_sale_mode;
+
+        [global::ProtoBuf.ProtoMember(6, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong[] allowed_zone_ids { get; set; }
 
     }
 
@@ -621,6 +693,16 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(5)]
         public global::System.Collections.Generic.List<BusinessDataPayroll> employee_payroll { get; } = new global::System.Collections.Generic.List<BusinessDataPayroll>();
 
+        [global::ProtoBuf.ProtoMember(6)]
+        public int daily_household_employee_wages
+        {
+            get => __pbn__daily_household_employee_wages.GetValueOrDefault();
+            set => __pbn__daily_household_employee_wages = value;
+        }
+        public bool ShouldSerializedaily_household_employee_wages() => __pbn__daily_household_employee_wages != null;
+        public void Resetdaily_household_employee_wages() => __pbn__daily_household_employee_wages = null;
+        private int? __pbn__daily_household_employee_wages;
+
         [global::ProtoBuf.ProtoContract()]
         public partial class EmployeeData : global::ProtoBuf.IExtensible
         {
@@ -879,6 +961,50 @@ namespace EA.Sims4.Network
         public void Resetminimum_employee_requirements_met() => __pbn__minimum_employee_requirements_met = null;
         private bool? __pbn__minimum_employee_requirements_met;
 
+        [global::ProtoBuf.ProtoMember(21, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong sim_id
+        {
+            get => __pbn__sim_id.GetValueOrDefault();
+            set => __pbn__sim_id = value;
+        }
+        public bool ShouldSerializesim_id() => __pbn__sim_id != null;
+        public void Resetsim_id() => __pbn__sim_id = null;
+        private ulong? __pbn__sim_id;
+
+        [global::ProtoBuf.ProtoMember(23)]
+        [global::System.ComponentModel.DefaultValue(-1)]
+        public int default_dynamic_area_type
+        {
+            get => __pbn__default_dynamic_area_type ?? -1;
+            set => __pbn__default_dynamic_area_type = value;
+        }
+        public bool ShouldSerializedefault_dynamic_area_type() => __pbn__default_dynamic_area_type != null;
+        public void Resetdefault_dynamic_area_type() => __pbn__default_dynamic_area_type = null;
+        private int? __pbn__default_dynamic_area_type;
+
+        [global::ProtoBuf.ProtoMember(24)]
+        public uint total_open_hours
+        {
+            get => __pbn__total_open_hours.GetValueOrDefault();
+            set => __pbn__total_open_hours = value;
+        }
+        public bool ShouldSerializetotal_open_hours() => __pbn__total_open_hours != null;
+        public void Resettotal_open_hours() => __pbn__total_open_hours = null;
+        private uint? __pbn__total_open_hours;
+
+        [global::ProtoBuf.ProtoMember(25)]
+        public uint total_customers_served
+        {
+            get => __pbn__total_customers_served.GetValueOrDefault();
+            set => __pbn__total_customers_served = value;
+        }
+        public bool ShouldSerializetotal_customers_served() => __pbn__total_customers_served != null;
+        public void Resettotal_customers_served() => __pbn__total_customers_served = null;
+        private uint? __pbn__total_customers_served;
+
+        [global::ProtoBuf.ProtoMember(26)]
+        public int[] dynamic_area_types { get; set; }
+
         [global::ProtoBuf.ProtoMember(15)]
         public RestaurantBusinessDataUpdate restaurant_data { get; set; }
 
@@ -890,6 +1016,12 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(20)]
         public RentalUnitBusinessDataUpdate rental_unit_data { get; set; }
+
+        [global::ProtoBuf.ProtoMember(22)]
+        public SmallBusinessDataUpdate small_business_data { get; set; }
+
+        [global::ProtoBuf.ProtoMember(27, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong[] allowed_zone_ids { get; set; }
 
     }
 
@@ -919,6 +1051,16 @@ namespace EA.Sims4.Network
         public bool ShouldSerializemarkup_chosen() => __pbn__markup_chosen != null;
         public void Resetmarkup_chosen() => __pbn__markup_chosen = null;
         private float? __pbn__markup_chosen;
+
+        [global::ProtoBuf.ProtoMember(3, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong sim_id
+        {
+            get => __pbn__sim_id.GetValueOrDefault();
+            set => __pbn__sim_id = value;
+        }
+        public bool ShouldSerializesim_id() => __pbn__sim_id != null;
+        public void Resetsim_id() => __pbn__sim_id = null;
+        private ulong? __pbn__sim_id;
 
     }
 
@@ -1017,6 +1159,16 @@ namespace EA.Sims4.Network
         public void Resettime_opened() => __pbn__time_opened = null;
         private ulong? __pbn__time_opened;
 
+        [global::ProtoBuf.ProtoMember(4, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong sim_id
+        {
+            get => __pbn__sim_id.GetValueOrDefault();
+            set => __pbn__sim_id = value;
+        }
+        public bool ShouldSerializesim_id() => __pbn__sim_id != null;
+        public void Resetsim_id() => __pbn__sim_id = null;
+        private ulong? __pbn__sim_id;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1085,6 +1237,16 @@ namespace EA.Sims4.Network
         public void Resetnet_profit() => __pbn__net_profit = null;
         private int? __pbn__net_profit;
 
+        [global::ProtoBuf.ProtoMember(3, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong sim_id
+        {
+            get => __pbn__sim_id.GetValueOrDefault();
+            set => __pbn__sim_id = value;
+        }
+        public bool ShouldSerializesim_id() => __pbn__sim_id != null;
+        public void Resetsim_id() => __pbn__sim_id = null;
+        private ulong? __pbn__sim_id;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1146,6 +1308,80 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(3)]
         public global::System.Collections.Generic.List<ManageEmployeeRowData> employees { get; } = new global::System.Collections.Generic.List<ManageEmployeeRowData>();
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public bool is_global_overview
+        {
+            get => __pbn__is_global_overview.GetValueOrDefault();
+            set => __pbn__is_global_overview = value;
+        }
+        public bool ShouldSerializeis_global_overview() => __pbn__is_global_overview != null;
+        public void Resetis_global_overview() => __pbn__is_global_overview = null;
+        private bool? __pbn__is_global_overview;
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public bool hide_review_stars
+        {
+            get => __pbn__hide_review_stars.GetValueOrDefault();
+            set => __pbn__hide_review_stars = value;
+        }
+        public bool ShouldSerializehide_review_stars() => __pbn__hide_review_stars != null;
+        public void Resethide_review_stars() => __pbn__hide_review_stars = null;
+        private bool? __pbn__hide_review_stars;
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public bool show_sim_bubble
+        {
+            get => __pbn__show_sim_bubble.GetValueOrDefault();
+            set => __pbn__show_sim_bubble = value;
+        }
+        public bool ShouldSerializeshow_sim_bubble() => __pbn__show_sim_bubble != null;
+        public void Resetshow_sim_bubble() => __pbn__show_sim_bubble = null;
+        private bool? __pbn__show_sim_bubble;
+
+        [global::ProtoBuf.ProtoMember(7)]
+        public bool show_staff_report
+        {
+            get => __pbn__show_staff_report.GetValueOrDefault();
+            set => __pbn__show_staff_report = value;
+        }
+        public bool ShouldSerializeshow_staff_report() => __pbn__show_staff_report != null;
+        public void Resetshow_staff_report() => __pbn__show_staff_report = null;
+        private bool? __pbn__show_staff_report;
+
+        [global::ProtoBuf.ProtoMember(8)]
+        public bool show_custom_stats_container
+        {
+            get => __pbn__show_custom_stats_container.GetValueOrDefault();
+            set => __pbn__show_custom_stats_container = value;
+        }
+        public bool ShouldSerializeshow_custom_stats_container() => __pbn__show_custom_stats_container != null;
+        public void Resetshow_custom_stats_container() => __pbn__show_custom_stats_container = null;
+        private bool? __pbn__show_custom_stats_container;
+
+        [global::ProtoBuf.ProtoMember(9)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string stats_custom_background
+        {
+            get => __pbn__stats_custom_background ?? "";
+            set => __pbn__stats_custom_background = value;
+        }
+        public bool ShouldSerializestats_custom_background() => __pbn__stats_custom_background != null;
+        public void Resetstats_custom_background() => __pbn__stats_custom_background = null;
+        private string __pbn__stats_custom_background;
+
+        [global::ProtoBuf.ProtoMember(10)]
+        public LocalizedString stats_custom_tooltip { get; set; }
+
+        [global::ProtoBuf.ProtoMember(11)]
+        public bool default_highlight_finances_help
+        {
+            get => __pbn__default_highlight_finances_help.GetValueOrDefault();
+            set => __pbn__default_highlight_finances_help = value;
+        }
+        public bool ShouldSerializedefault_highlight_finances_help() => __pbn__default_highlight_finances_help != null;
+        public void Resetdefault_highlight_finances_help() => __pbn__default_highlight_finances_help = null;
+        private bool? __pbn__default_highlight_finances_help;
 
     }
 
@@ -1520,6 +1756,127 @@ namespace EA.Sims4.Network
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class SmallBusinessSaveData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public SmallBusinessIncomeData small_business_income_data { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.BucksData> bucks_data { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.BucksData>();
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public global::System.Collections.Generic.List<ClubConductRule> customer_rules { get; } = new global::System.Collections.Generic.List<ClubConductRule>();
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public global::System.Collections.Generic.List<ClubCriteria> attendance_criteria { get; } = new global::System.Collections.Generic.List<ClubCriteria>();
+
+        [global::ProtoBuf.ProtoMember(5)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string name
+        {
+            get => __pbn__name ?? "";
+            set => __pbn__name = value;
+        }
+        public bool ShouldSerializename() => __pbn__name != null;
+        public void Resetname() => __pbn__name = null;
+        private string __pbn__name;
+
+        [global::ProtoBuf.ProtoMember(6)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string description
+        {
+            get => __pbn__description ?? "";
+            set => __pbn__description = value;
+        }
+        public bool ShouldSerializedescription() => __pbn__description != null;
+        public void Resetdescription() => __pbn__description = null;
+        private string __pbn__description;
+
+        [global::ProtoBuf.ProtoMember(7)]
+        public ResourceKey icon { get; set; }
+
+        [global::ProtoBuf.ProtoMember(8)]
+        public global::System.Collections.Generic.List<SmallBusinessEmployeeData> employee_data { get; } = new global::System.Collections.Generic.List<SmallBusinessEmployeeData>();
+
+        [global::ProtoBuf.ProtoMember(9)]
+        public uint business_xp_on_open
+        {
+            get => __pbn__business_xp_on_open.GetValueOrDefault();
+            set => __pbn__business_xp_on_open = value;
+        }
+        public bool ShouldSerializebusiness_xp_on_open() => __pbn__business_xp_on_open != null;
+        public void Resetbusiness_xp_on_open() => __pbn__business_xp_on_open = null;
+        private uint? __pbn__business_xp_on_open;
+
+        [global::ProtoBuf.ProtoMember(10)]
+        public bool had_ticket_machine_once
+        {
+            get => __pbn__had_ticket_machine_once.GetValueOrDefault();
+            set => __pbn__had_ticket_machine_once = value;
+        }
+        public bool ShouldSerializehad_ticket_machine_once() => __pbn__had_ticket_machine_once != null;
+        public void Resethad_ticket_machine_once() => __pbn__had_ticket_machine_once = null;
+        private bool? __pbn__had_ticket_machine_once;
+
+        [global::ProtoBuf.ProtoMember(11)]
+        public bool had_employee_once
+        {
+            get => __pbn__had_employee_once.GetValueOrDefault();
+            set => __pbn__had_employee_once = value;
+        }
+        public bool ShouldSerializehad_employee_once() => __pbn__had_employee_once != null;
+        public void Resethad_employee_once() => __pbn__had_employee_once = null;
+        private bool? __pbn__had_employee_once;
+
+        [global::ProtoBuf.ProtoMember(12)]
+        public bool had_light_retail_surface_once
+        {
+            get => __pbn__had_light_retail_surface_once.GetValueOrDefault();
+            set => __pbn__had_light_retail_surface_once = value;
+        }
+        public bool ShouldSerializehad_light_retail_surface_once() => __pbn__had_light_retail_surface_once != null;
+        public void Resethad_light_retail_surface_once() => __pbn__had_light_retail_surface_once = null;
+        private bool? __pbn__had_light_retail_surface_once;
+
+        [global::ProtoBuf.ProtoMember(13)]
+        public bool business_has_been_autocreated
+        {
+            get => __pbn__business_has_been_autocreated.GetValueOrDefault();
+            set => __pbn__business_has_been_autocreated = value;
+        }
+        public bool ShouldSerializebusiness_has_been_autocreated() => __pbn__business_has_been_autocreated != null;
+        public void Resetbusiness_has_been_autocreated() => __pbn__business_has_been_autocreated = null;
+        private bool? __pbn__business_has_been_autocreated;
+
+        [global::ProtoBuf.ProtoMember(14, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong[] allowed_zone_ids { get; set; }
+
+        [global::ProtoBuf.ProtoMember(15)]
+        public LocalizedString name_key { get; set; }
+
+        [global::ProtoBuf.ProtoMember(16)]
+        public LocalizedString description_key { get; set; }
+
+        [global::ProtoBuf.ProtoMember(17, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong transferred_sim_id
+        {
+            get => __pbn__transferred_sim_id.GetValueOrDefault();
+            set => __pbn__transferred_sim_id = value;
+        }
+        public bool ShouldSerializetransferred_sim_id() => __pbn__transferred_sim_id != null;
+        public void Resettransferred_sim_id() => __pbn__transferred_sim_id = null;
+        private ulong? __pbn__transferred_sim_id;
+
+        [global::ProtoBuf.ProtoMember(18, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong[] business_visitors_ids { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class BusinessSaveData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -1661,11 +2018,24 @@ namespace EA.Sims4.Network
         public void Resetbuff_bucket_size() => __pbn__buff_bucket_size = null;
         private uint? __pbn__buff_bucket_size;
 
+        [global::ProtoBuf.ProtoMember(22)]
+        public uint total_open_hours
+        {
+            get => __pbn__total_open_hours.GetValueOrDefault();
+            set => __pbn__total_open_hours = value;
+        }
+        public bool ShouldSerializetotal_open_hours() => __pbn__total_open_hours != null;
+        public void Resettotal_open_hours() => __pbn__total_open_hours = null;
+        private uint? __pbn__total_open_hours;
+
         [global::ProtoBuf.ProtoMember(19)]
         public VetClinicSaveData vet_clinic_save_data { get; set; }
 
         [global::ProtoBuf.ProtoMember(20)]
         public RentalUnitSaveData rental_unit_save_data { get; set; }
+
+        [global::ProtoBuf.ProtoMember(21)]
+        public SmallBusinessSaveData small_business_save_data { get; set; }
 
         [global::ProtoBuf.ProtoContract()]
         public partial class BusinessFundsCategoryEntry : global::ProtoBuf.IExtensible
@@ -1723,6 +2093,240 @@ namespace EA.Sims4.Network
         public bool ShouldSerializerental_unit_payout_timer() => __pbn__rental_unit_payout_timer != null;
         public void Resetrental_unit_payout_timer() => __pbn__rental_unit_payout_timer = null;
         private ulong? __pbn__rental_unit_payout_timer;
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public global::System.Collections.Generic.List<BusinessRulePreset> rule_presets_data { get; } = new global::System.Collections.Generic.List<BusinessRulePreset>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SmallBusinessIncomeData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public SmallBusinessIncomeRecord current_day_business_income_record { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public SmallBusinessIncomeRecord total_business_income_record { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public uint attendance_sale_mode_enum
+        {
+            get => __pbn__attendance_sale_mode_enum.GetValueOrDefault();
+            set => __pbn__attendance_sale_mode_enum = value;
+        }
+        public bool ShouldSerializeattendance_sale_mode_enum() => __pbn__attendance_sale_mode_enum != null;
+        public void Resetattendance_sale_mode_enum() => __pbn__attendance_sale_mode_enum = null;
+        private uint? __pbn__attendance_sale_mode_enum;
+
+        [global::ProtoBuf.ProtoMember(4)]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool is_light_retail_enabled
+        {
+            get => __pbn__is_light_retail_enabled ?? false;
+            set => __pbn__is_light_retail_enabled = value;
+        }
+        public bool ShouldSerializeis_light_retail_enabled() => __pbn__is_light_retail_enabled != null;
+        public void Resetis_light_retail_enabled() => __pbn__is_light_retail_enabled = null;
+        private bool? __pbn__is_light_retail_enabled;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SmallBusinessIncomeRecord : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint customers_visited
+        {
+            get => __pbn__customers_visited.GetValueOrDefault();
+            set => __pbn__customers_visited = value;
+        }
+        public bool ShouldSerializecustomers_visited() => __pbn__customers_visited != null;
+        public void Resetcustomers_visited() => __pbn__customers_visited = null;
+        private uint? __pbn__customers_visited;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint aggregate_customers_hours
+        {
+            get => __pbn__aggregate_customers_hours.GetValueOrDefault();
+            set => __pbn__aggregate_customers_hours = value;
+        }
+        public bool ShouldSerializeaggregate_customers_hours() => __pbn__aggregate_customers_hours != null;
+        public void Resetaggregate_customers_hours() => __pbn__aggregate_customers_hours = null;
+        private uint? __pbn__aggregate_customers_hours;
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public global::System.Collections.Generic.List<SingleRevenueRecord> records_by_revenue { get; } = new global::System.Collections.Generic.List<SingleRevenueRecord>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SmallBusinessEmployeeData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong employee_id
+        {
+            get => __pbn__employee_id.GetValueOrDefault();
+            set => __pbn__employee_id = value;
+        }
+        public bool ShouldSerializeemployee_id() => __pbn__employee_id != null;
+        public void Resetemployee_id() => __pbn__employee_id = null;
+        private ulong? __pbn__employee_id;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::System.Collections.Generic.List<ClubConductRule> employee_rules { get; } = new global::System.Collections.Generic.List<ClubConductRule>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ManageSmallBusinessEmployeeRowData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong sim_id { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint pay
+        {
+            get => __pbn__pay.GetValueOrDefault();
+            set => __pbn__pay = value;
+        }
+        public bool ShouldSerializepay() => __pbn__pay != null;
+        public void Resetpay() => __pbn__pay = null;
+        private uint? __pbn__pay;
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public global::System.Collections.Generic.List<ManageEmployeeSkillData> skill_data { get; } = new global::System.Collections.Generic.List<ManageEmployeeSkillData>();
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public global::System.Collections.Generic.List<ClubConductRule> rules { get; } = new global::System.Collections.Generic.List<ClubConductRule>();
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public bool is_fake_payment_enabled
+        {
+            get => __pbn__is_fake_payment_enabled.GetValueOrDefault();
+            set => __pbn__is_fake_payment_enabled = value;
+        }
+        public bool ShouldSerializeis_fake_payment_enabled() => __pbn__is_fake_payment_enabled != null;
+        public void Resetis_fake_payment_enabled() => __pbn__is_fake_payment_enabled = null;
+        private bool? __pbn__is_fake_payment_enabled;
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public ResourceKey salary_icon { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ManageSmallBusinessEmployeesData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong hiring_sim_id { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::System.Collections.Generic.List<ManageSmallBusinessEmployeeRowData> employees { get; } = new global::System.Collections.Generic.List<ManageSmallBusinessEmployeeRowData>();
+
+        [global::ProtoBuf.ProtoMember(3)]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool has_no_potential_employees
+        {
+            get => __pbn__has_no_potential_employees ?? false;
+            set => __pbn__has_no_potential_employees = value;
+        }
+        public bool ShouldSerializehas_no_potential_employees() => __pbn__has_no_potential_employees != null;
+        public void Resethas_no_potential_employees() => __pbn__has_no_potential_employees = null;
+        private bool? __pbn__has_no_potential_employees;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class BusinessRulePreset : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string name
+        {
+            get => __pbn__name ?? "";
+            set => __pbn__name = value;
+        }
+        public bool ShouldSerializename() => __pbn__name != null;
+        public void Resetname() => __pbn__name = null;
+        private string __pbn__name;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::System.Collections.Generic.List<ClubConductRule> rules { get; } = new global::System.Collections.Generic.List<ClubConductRule>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UpdateBusinessRulePresets : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<BusinessRulePreset> presets { get; } = new global::System.Collections.Generic.List<BusinessRulePreset>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SingleRevenueRecord : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public uint revenue_type
+        {
+            get => __pbn__revenue_type.GetValueOrDefault();
+            set => __pbn__revenue_type = value;
+        }
+        public bool ShouldSerializerevenue_type() => __pbn__revenue_type != null;
+        public void Resetrevenue_type() => __pbn__revenue_type = null;
+        private uint? __pbn__revenue_type;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public uint count
+        {
+            get => __pbn__count.GetValueOrDefault();
+            set => __pbn__count = value;
+        }
+        public bool ShouldSerializecount() => __pbn__count != null;
+        public void Resetcount() => __pbn__count = null;
+        private uint? __pbn__count;
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public int profit
+        {
+            get => __pbn__profit.GetValueOrDefault();
+            set => __pbn__profit = value;
+        }
+        public bool ShouldSerializeprofit() => __pbn__profit != null;
+        public void Resetprofit() => __pbn__profit = null;
+        private int? __pbn__profit;
 
     }
 
@@ -1840,6 +2444,19 @@ namespace EA.Sims4.Network
         public void Resetrental_unit_payout_cache() => __pbn__rental_unit_payout_cache = null;
         private uint? __pbn__rental_unit_payout_cache;
 
+        [global::ProtoBuf.ProtoMember(8)]
+        public global::System.Collections.Generic.List<BusinessManagerData> zoneless_business_manager_data { get; } = new global::System.Collections.Generic.List<BusinessManagerData>();
+
+        [global::ProtoBuf.ProtoMember(9, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong sim_id_open_business_on_load
+        {
+            get => __pbn__sim_id_open_business_on_load.GetValueOrDefault();
+            set => __pbn__sim_id_open_business_on_load = value;
+        }
+        public bool ShouldSerializesim_id_open_business_on_load() => __pbn__sim_id_open_business_on_load != null;
+        public void Resetsim_id_open_business_on_load() => __pbn__sim_id_open_business_on_load = null;
+        private ulong? __pbn__sim_id_open_business_on_load;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1872,6 +2489,16 @@ namespace EA.Sims4.Network
         public bool ShouldSerializemake_unowned_on_load() => __pbn__make_unowned_on_load != null;
         public void Resetmake_unowned_on_load() => __pbn__make_unowned_on_load = null;
         private bool? __pbn__make_unowned_on_load;
+
+        [global::ProtoBuf.ProtoMember(4, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong sim_id
+        {
+            get => __pbn__sim_id.GetValueOrDefault();
+            set => __pbn__sim_id = value;
+        }
+        public bool ShouldSerializesim_id() => __pbn__sim_id != null;
+        public void Resetsim_id() => __pbn__sim_id = null;
+        private ulong? __pbn__sim_id;
 
     }
 
@@ -1949,7 +2576,26 @@ namespace EA.Sims4.Network
 
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DeleteSimBusiness : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong sim_id
+        {
+            get => __pbn__sim_id.GetValueOrDefault();
+            set => __pbn__sim_id = value;
+        }
+        public bool ShouldSerializesim_id() => __pbn__sim_id != null;
+        public void Resetsim_id() => __pbn__sim_id = null;
+        private ulong? __pbn__sim_id;
+
+    }
+
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

@@ -241,6 +241,8 @@ namespace EA.Sims4.Persistence
         {
             STANDARD_GOAL_TRACKER = 0,
             DYNAMIC_GOAL_TRACKER = 1,
+            SIMPLE_GOAL_TRACKER = 2,
+            ACTIVITY_GOAL_TRACKER = 3,
         }
 
     }
@@ -726,5 +728,5 @@ namespace EA.Sims4.Persistence
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion

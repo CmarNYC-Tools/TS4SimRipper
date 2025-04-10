@@ -1231,6 +1231,36 @@ namespace EA.Sims4.Persistence
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class ZoneObjectDataScratchPair : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong zone_id
+        {
+            get => __pbn__zone_id.GetValueOrDefault();
+            set => __pbn__zone_id = value;
+        }
+        public bool ShouldSerializezone_id() => __pbn__zone_id != null;
+        public void Resetzone_id() => __pbn__zone_id = null;
+        private ulong? __pbn__zone_id;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string zone_object_data_scratch_path
+        {
+            get => __pbn__zone_object_data_scratch_path ?? "";
+            set => __pbn__zone_object_data_scratch_path = value;
+        }
+        public bool ShouldSerializezone_object_data_scratch_path() => __pbn__zone_object_data_scratch_path != null;
+        public void Resetzone_object_data_scratch_path() => __pbn__zone_object_data_scratch_path = null;
+        private string __pbn__zone_object_data_scratch_path;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class SituationConditionalLayerData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -1319,6 +1349,18 @@ namespace EA.Sims4.Persistence
 
         [global::ProtoBuf.ProtoMember(12)]
         public global::System.Collections.Generic.List<SituationConditionalLayerData> situation_conditional_layers { get; } = new global::System.Collections.Generic.List<SituationConditionalLayerData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SteadySimIdList : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong[] sim_id { get; set; }
 
     }
 
@@ -1940,6 +1982,35 @@ namespace EA.Sims4.Persistence
         public void Resetneeds_age_progress_randomized() => __pbn__needs_age_progress_randomized = null;
         private bool? __pbn__needs_age_progress_randomized;
 
+        [global::ProtoBuf.ProtoMember(72)]
+        public SteadySimIdList steadies { get; set; }
+
+        [global::ProtoBuf.ProtoMember(73)]
+        public uint ghost_base_color
+        {
+            get => __pbn__ghost_base_color.GetValueOrDefault();
+            set => __pbn__ghost_base_color = value;
+        }
+        public bool ShouldSerializeghost_base_color() => __pbn__ghost_base_color != null;
+        public void Resetghost_base_color() => __pbn__ghost_base_color = null;
+        private uint? __pbn__ghost_base_color;
+
+        [global::ProtoBuf.ProtoMember(74)]
+        public uint ghost_edge_color
+        {
+            get => __pbn__ghost_edge_color.GetValueOrDefault();
+            set => __pbn__ghost_edge_color = value;
+        }
+        public bool ShouldSerializeghost_edge_color() => __pbn__ghost_edge_color != null;
+        public void Resetghost_edge_color() => __pbn__ghost_edge_color = null;
+        private uint? __pbn__ghost_edge_color;
+
+        [global::ProtoBuf.ProtoMember(75)]
+        public global::System.Collections.Generic.List<SimPartCustomTattooData> parts_custom_tattoos { get; } = new global::System.Collections.Generic.List<SimPartCustomTattooData>();
+
+        [global::ProtoBuf.ProtoMember(76)]
+        public global::System.Collections.Generic.List<SimPartCreatorData> parts_creator_data { get; } = new global::System.Collections.Generic.List<SimPartCreatorData>();
+
         [global::ProtoBuf.ProtoContract()]
         public enum SimCreationPath
         {
@@ -1991,6 +2062,27 @@ namespace EA.Sims4.Persistence
         public bool ShouldSerializeis_new_reward() => __pbn__is_new_reward != null;
         public void Resetis_new_reward() => __pbn__is_new_reward = null;
         private bool? __pbn__is_new_reward;
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public ulong sim_id
+        {
+            get => __pbn__sim_id.GetValueOrDefault();
+            set => __pbn__sim_id = value;
+        }
+        public bool ShouldSerializesim_id() => __pbn__sim_id != null;
+        public void Resetsim_id() => __pbn__sim_id = null;
+        private ulong? __pbn__sim_id;
+
+        [global::ProtoBuf.ProtoMember(4)]
+        [global::System.ComponentModel.DefaultValue(55242443u)]
+        public uint reward_part_type
+        {
+            get => __pbn__reward_part_type ?? 55242443u;
+            set => __pbn__reward_part_type = value;
+        }
+        public bool ShouldSerializereward_part_type() => __pbn__reward_part_type != null;
+        public void Resetreward_part_type() => __pbn__reward_part_type = null;
+        private uint? __pbn__reward_part_type;
 
     }
 
@@ -2382,6 +2474,16 @@ namespace EA.Sims4.Persistence
 
         [global::ProtoBuf.ProtoMember(34)]
         public StoryProgressionRuleSet story_progression_rule_set { get; set; }
+
+        [global::ProtoBuf.ProtoMember(35)]
+        public bool dependent
+        {
+            get => __pbn__dependent.GetValueOrDefault();
+            set => __pbn__dependent = value;
+        }
+        public bool ShouldSerializedependent() => __pbn__dependent != null;
+        public void Resetdependent() => __pbn__dependent = null;
+        private bool? __pbn__dependent;
 
     }
 
@@ -3756,5 +3858,5 @@ namespace EA.Sims4.Persistence
 
 }
 
-#pragma warning restore CS0612, CS0618, CS1591, CS3021, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
+#pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
 #endregion
