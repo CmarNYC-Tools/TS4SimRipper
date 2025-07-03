@@ -222,7 +222,7 @@ namespace TS4SimRipper
             get
             {
                 bool b = false;
-                if (new string(this.magic) == "GEOM" && this.numVerts > 0 && (this.version == 5 || this.version == 12 || this.version == 13 || this.version == 14) && this.Fcount > 2)
+                if (new string(this.magic) == "GEOM" && this.numVerts > 0 && (this.version == 5 || this.version == 12 || this.version == 13 || this.version == 14 || this.version == 15) && this.Fcount > 2)
                 {
                     b = true;
                     int uvInd = 0;
@@ -1247,6 +1247,10 @@ namespace TS4SimRipper
             for (int i = 0; i < this.bonehashcount; i++)
             {
                 this.bonehasharray[i] = br.ReadUInt32();
+            }
+            if (this.version >= 15)
+            {
+                 this.EBN1 = br.ReadUInt32();
             }
             if (br.BaseStream.Length <= br.BaseStream.Position) return;
             this.numtgi = br.ReadInt32();
@@ -2300,6 +2304,8 @@ namespace TS4SimRipper
                 return false;
             }
         }
+
+        public uint EBN1 { get; private set; }
 
         public void AutoVertexID(GEOM refMesh)
         {

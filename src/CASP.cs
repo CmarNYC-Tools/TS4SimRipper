@@ -502,10 +502,18 @@ namespace TS4SimRipper
             {
                 this.LayerID = br.ReadUInt16();
             }
+            if (version >= 51)
+            {
+                this.EBN1 = br.ReadUInt32();
+            }
             excludePartFlags = br.ReadUInt64();
             if (version >= 41)
             {
                 excludePartFlags2 = br.ReadUInt64();
+            }
+            if (version >= 51)
+            {
+                this.EBN2 = br.ReadUInt64();
             }
             if (version > 36)
             {
@@ -801,7 +809,9 @@ namespace TS4SimRipper
             }
         }
 
-        public ushort LayerID { get; private set; }
+        public ushort LayerID { get; set; }
+        public uint EBN1 { get; set; }
+        public ulong EBN2 { get; set; }
 
         internal class PartTag
         {
