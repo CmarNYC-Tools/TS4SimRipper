@@ -317,6 +317,9 @@ namespace TS4SimRipper
         TailBase,
         BirthmarkOccult,
         TattooHead,
+        Wings,
+        HeadDeco,
+        SkinSpecularity,
     }
 
     public enum BodySubType
