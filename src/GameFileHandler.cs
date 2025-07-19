@@ -130,8 +130,12 @@ namespace TS4SimRipper
             var packs = Path.Combine(Path.GetDirectoryName(TS4FilesPath),PackSubFolder);
             if(Directory.Exists(packs)) pathRoots.Add(packs);
             else{
-                packs = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(TS4FilesPath)), PackSubFolder);
-                if(Directory.Exists(packs)) pathRoots.Add(packs);
+                var packRoot = Path.GetDirectoryName(Path.GetDirectoryName(TS4FilesPath));
+                if (packRoot != null)
+                {
+                    packs = Path.Combine(packRoot, PackSubFolder);
+                    if (Directory.Exists(packs)) pathRoots.Add(packs);
+                }
             }
             List<Package> gamePacks = new List<Package>();
             List<string> paths = new List<string>();
