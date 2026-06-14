@@ -243,12 +243,15 @@ namespace TS4SimRipper
             {
                 this.sculpts[i] = new TGI((uint)ResourceTypes.Sculpt, 0, simSculpts[i]);
             }
-            var faceMods = morphs.face_modifiers != null ? morphs.face_modifiers : new List<TS4SaveGame.BlobSimFacialCustomizationData.Modifier>();
-            this.faceModifiers = new SimModifierData[faceMods.Count];
-            for (int i = 0; i < faceMods.Count; i++)
-            {
-                this.faceModifiers[i] = new SimModifierData(new TGI((uint)ResourceTypes.SimModifier, 0, faceMods[i].key), faceMods[i].amount);
-            }
+            var faceMods = morphs.face_modifiers ?? new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
+            var agedFaceMods = morphs.aged_face_modifiers ?? new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
+            var faceModsEff = new Dictionary<ulong, float>();
+            foreach (var m in faceMods) faceModsEff[m.key] = m.amount;
+            foreach (var m in agedFaceMods) faceModsEff[m.key] = m.amount;
+            this.faceModifiers = new SimModifierData[faceModsEff.Count];
+            int fmIdx = 0;
+            foreach (var kvp in faceModsEff)
+                this.faceModifiers[fmIdx++] = new SimModifierData(new TGI((uint)ResourceTypes.SimModifier, 0, kvp.Key), kvp.Value);
             var bodyMods = morphs.body_modifiers != null ? morphs.body_modifiers : new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
             this.bodyModifiers = new SimModifierData[bodyMods.Count];
             for (int i = 0; i < bodyMods.Count; i++)

@@ -532,7 +532,9 @@ namespace TS4SimRipper
                         Stream s2 = new MemoryStream(occultSim.facial_attributes);
                         TS4SaveGame.BlobSimFacialCustomizationData morphs = Serializer.Deserialize<TS4SaveGame.BlobSimFacialCustomizationData>(s2);
                         sculpts = morphs.sculpts != null ? morphs.sculpts : new ulong[0];
-                        faceModifiers = morphs.face_modifiers != null ? morphs.face_modifiers : new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
+                        faceModifiers = EffectiveFaceModifiers(
+                            morphs.face_modifiers ?? new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>(),
+                            morphs.aged_face_modifiers ?? new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>());
                         bodyModifiers = morphs.body_modifiers != null ? morphs.body_modifiers : new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
                         physique = occultSim.physique.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                         outfits = occultSim.outfits.outfits;
@@ -547,7 +549,9 @@ namespace TS4SimRipper
                 Stream s2 = new MemoryStream(sim.facial_attr);
                 TS4SaveGame.BlobSimFacialCustomizationData morphs = Serializer.Deserialize<TS4SaveGame.BlobSimFacialCustomizationData>(s2);
                 sculpts = morphs.sculpts != null ? morphs.sculpts : new ulong[0];
-                faceModifiers = morphs.face_modifiers != null ? morphs.face_modifiers : new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
+                faceModifiers = EffectiveFaceModifiers(
+                    morphs.face_modifiers ?? new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>(),
+                    morphs.aged_face_modifiers ?? new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>());
                 bodyModifiers = morphs.body_modifiers != null ? morphs.body_modifiers : new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>();
                 physique = sim.physique.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 outfits = sim.outfits.outfits;
@@ -1643,6 +1647,24 @@ namespace TS4SimRipper
             morphPreview1.Start_Mesh(CurrentModel, GlassModel, WingsModel, currentTexture, currentClothingSpecular,
                 currentGlassTexture, currentGlassSpecular, currentWingsTexture,currentWingsSpecular, false, SeparateMeshesByShader);
             Working_label.Visible = false;
+        }
+
+        private static List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier> EffectiveFaceModifiers(
+            IList<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier> baseMods,
+            IList<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier> agedMods)
+        {
+            var eff = new Dictionary<ulong, float>();
+            foreach (var m in baseMods) eff[m.key] = m.amount;
+            foreach (var m in agedMods) eff[m.key] = m.amount;
+            var result = new List<EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier>(eff.Count);
+            foreach (var kvp in eff)
+            {
+                var mod = new EA.Sims4.Persistence.BlobSimFacialCustomizationData.Modifier();
+                mod.key = kvp.Key;
+                mod.amount = kvp.Value;
+                result.Add(mod);
+            }
+            return result;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
